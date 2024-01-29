@@ -28,7 +28,7 @@
         <Label text="Map Editor" />
         <Button fx:id="editorButton" text="Return to the menu" onAction="#switchToMenu" />
         <HBox>
-            <VBox>
+            <VBox style="-fx-padding: 0 100 0 100;">
                 <Button text="Icon 1" />
                 <Button text="Icon 2" />
                 <Button text="Icon 3" />

@@ -9,4 +9,9 @@ public class EditorController {
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
     }
+
+    @FXML
+    private void createGridPane() {
+
+    }
 }
