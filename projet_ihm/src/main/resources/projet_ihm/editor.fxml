@@ -19,24 +19,25 @@
             <Menu mnemonicParsing="false" text="File">
                 <MenuItem mnemonicParsing="false" text="Save"/>
                 <MenuItem mnemonicParsing="false" text="Load"/>
+                <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Return to the menu" onAction="#switchToMenu"/>
             </Menu>
             <Menu text="View">
                 <MenuItem mnemonicParsing="false" text="Zoom +"/>
                 <MenuItem mnemonicParsing="false" text="Zoom -"/>
             </Menu>
         </MenuBar>
-        <Label text="Map Editor" />
-        <Button fx:id="editorButton" text="Return to the menu" onAction="#switchToMenu" />
+        <!-- <Label text="Map Editor" /> -->
+        <!-- <Button fx:id="editorButton" text="Return to the menu" onAction="#switchToMenu" /> -->
         <HBox>
-            <VBox style="-fx-padding: 0 100 0 100;">
+            <VBox style="-fx-padding: 0 50 0 50;">
                 <Button text="Icon 1" />
                 <Button text="Icon 2" />
                 <Button text="Icon 3" />
             </VBox>
-            <GridPane xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" hgap="10" vgap="10">
-                <Button text="Button 1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER">
+                <!-- <Button text="Button 1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Button text="Button 2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Button text="Button 3" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Button text="Button 3" GridPane.columnIndex="0" GridPane.rowIndex="1" /> -->
             </GridPane>
         </HBox>
     </children>
