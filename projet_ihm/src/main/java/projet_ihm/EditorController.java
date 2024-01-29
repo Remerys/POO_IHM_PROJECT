@@ -7,11 +7,17 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 public class EditorController {
 
     @FXML
     GridPane gridpane;
+
+    @FXML
+    VBox icons;
+
+    String currentImage = "floor";
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -35,7 +41,33 @@ public class EditorController {
     }
 
     @FXML
+    private void createIcons() {
+        String[] imagesStr = { "exit", "floor", "food", "key", "potion_defense", "potion_life" };
+        for (String imageStr : imagesStr) {
+            Image image = new Image(getClass().getResource(String.format("/images/%s.png", imageStr)).toExternalForm());
+            ImageView view = new ImageView(image);
+            view.setFitHeight(50);
+            view.setFitWidth(50);
+
+            Button button = new Button();
+            button.setGraphic(view);
+            icons.getChildren().add(button);
+        }
+    }
+
+    @FXML
     public void initialize() {
         createGridPane();
+        createIcons();
     }
+
+    // @FXML
+    // public void setImage(int x, int y) {
+    // Image image = new Image(
+    // getClass().getResource(String.format("/images/%s.png",
+    // this.currentImage)).toExternalForm());
+    // ImageView view = new ImageView(image);
+    // gridpane.add(view, x, y);
+
+    // }
 }
