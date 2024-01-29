@@ -20,15 +20,16 @@ public class EditorController {
 
     @FXML
     private void createGridPane() {
-        int size = 10;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                Button button = new Button();
-                Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
+        int gridSize = 41;
+        int buttonSize = 450 / gridSize;
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
                 ImageView view = new ImageView(image);
                 view.setPreserveRatio(true);
-                button.setGraphic(view);
-                gridpane.add(button, i, j);
+                view.setFitHeight(buttonSize);
+                view.setFitWidth(buttonSize);
+                gridpane.add(view, i, j);
             }
         }
     }
