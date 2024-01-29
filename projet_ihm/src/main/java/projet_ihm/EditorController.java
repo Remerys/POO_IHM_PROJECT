@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 
 public class EditorController {
 
+
+
     @FXML
     GridPane gridpane;
 
@@ -27,13 +29,13 @@ public class EditorController {
     private void createGridPane() {
         Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
         int gridSize = 41;
-        int buttonSize = 450 / gridSize;
+        //int buttonSize = 450 / gridSize;
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 ImageView view = new ImageView(image);
                 view.setPreserveRatio(true);
-                view.setFitHeight(buttonSize);
-                view.setFitWidth(buttonSize);
+                //view.setFitHeight(buttonSize);
+                //view.setFitWidth(buttonSize);
                 gridpane.add(view, i, j);
             }
         }
@@ -58,6 +60,22 @@ public class EditorController {
     public void initialize() {
         createGridPane();
         createIcons();
+    }
+
+    @FXML
+    public void zoomIn() {
+        double delta = 1.2;
+        double scale = gridpane.getScaleX();
+        gridpane.setScaleX(scale * delta);
+        gridpane.setScaleY(scale * delta);
+    }
+
+    @FXML
+    public void zoomOut() {
+        double delta = 1.2;
+        double scale = gridpane.getScaleX();
+        gridpane.setScaleX(scale / delta);
+        gridpane.setScaleY(scale / delta);
     }
 
     // @FXML
