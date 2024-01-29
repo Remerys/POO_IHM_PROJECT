@@ -5,14 +5,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_ihm.PrimaryController"
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_ihm.MenuController"
       style='-fx-background-color:
             linear-gradient(#4568DC, #B06AB3),
             repeating-image-pattern("https://edencoding.com/resources/wp-content/uploads/2021/02/Stars_128.png"),
             radial-gradient(center 50% 50%, radius 50%, #FFFFFF33, #00000033)'>
    <children>
       <Label text="Gauntlet" />
-      <Button fx:id="primaryButton" text="Switch to Map Editor" onAction="#switchToSecondary"/>
+      <Button fx:id="menuButton" text="Switch to Map Editor" onAction="#switchToEditor"/>
       <Button fx:id="single" text="Single Player" />
       <Button fx:id="multi" text="MultiPlayer" />
       <Button fx:id="score" text="Hall Of Fame" />

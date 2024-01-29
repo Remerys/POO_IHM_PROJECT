@@ -1,7 +1,8 @@
 module projet_ihm {
-    requires javafx.controls;
-    requires javafx.fxml;
+    requires transitive javafx.controls;
+    requires transitive javafx.fxml;
 
     opens projet_ihm to javafx.fxml;
+
     exports projet_ihm;
 }
