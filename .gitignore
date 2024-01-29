@@ -1,2 +1,3 @@
 projet_ihm/.vscode/
 projet_ihm/bin/
+projet_ihm/target/classes/*.class
