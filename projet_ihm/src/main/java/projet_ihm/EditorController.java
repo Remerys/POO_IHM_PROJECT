@@ -20,15 +20,14 @@ public class EditorController {
 
     @FXML
     private void createGridPane() {
-        // Image image = new Image(App.class.getResource("floor.png").toExternalForm());
-        // ImageView view = new ImageView(image);
-        // view.setPreserveRatio(true);
         int size = 10;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Button button = new Button();
-                button.setText("Button" + i + j);
-                // button.setGraphic(view);
+                Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
+                ImageView view = new ImageView(image);
+                view.setPreserveRatio(true);
+                button.setGraphic(view);
                 gridpane.add(button, i, j);
             }
         }
