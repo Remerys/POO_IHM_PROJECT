@@ -1,13 +1,12 @@
 package projet_ihm;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 public class EditorController {
 
@@ -15,7 +14,7 @@ public class EditorController {
     GridPane gridpane;
 
     @FXML
-    VBox icons;
+    HBox icons;
 
     String currentImage = "floor";
 

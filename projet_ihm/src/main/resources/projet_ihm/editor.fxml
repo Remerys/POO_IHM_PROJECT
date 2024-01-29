@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
@@ -26,17 +27,11 @@
                 <MenuItem mnemonicParsing="false" text="Zoom -"/>
             </Menu>
         </MenuBar>
-        <!-- <Label text="Map Editor" /> -->
-        <!-- <Button fx:id="editorButton" text="Return to the menu" onAction="#switchToMenu" /> -->
-        <HBox>
-            <VBox fx:id="icons" style="-fx-padding: 0 50 0 50;">
-            </VBox>
-            <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER">
-                <!-- <Button text="Button 1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Button text="Button 2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Button text="Button 3" GridPane.columnIndex="0" GridPane.rowIndex="1" /> -->
-            </GridPane>
-        </HBox>
+        <VBox>
+            
+            <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER"></GridPane>
+            <HBox fx:id="icons" style="-fx-padding: 10 0 0 10;" alignment="BOTTOM_CENTER"></HBox>
+        </VBox>
     </children>
     <padding>
         <Insets top="0" right="0" bottom="0" left="0" />
