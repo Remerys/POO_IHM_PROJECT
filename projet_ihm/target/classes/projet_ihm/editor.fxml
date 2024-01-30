@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.ScrollPane?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_ihm.EditorController">
     <children>
@@ -23,13 +24,16 @@
                 <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Return to the menu" onAction="#switchToMenu"/>
             </Menu>
             <Menu text="View">
-                <MenuItem mnemonicParsing="false" text="Zoom +"/>
-                <MenuItem mnemonicParsing="false" text="Zoom -"/>
+                <MenuItem mnemonicParsing="false" text="Zoom +" onAction="#zoomIn"/>
+                <MenuItem mnemonicParsing="false" text="Zoom -" onAction="#zoomOut"/>
             </Menu>
         </MenuBar>
         <VBox>
-            
-            <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER"></GridPane>
+            <ScrollPane fx:id="scrollpane" pannable="true" vbarPolicy="AS_NEEDED">
+                <content>
+                    <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml"></GridPane>
+                </content>
+            </ScrollPane>
             <HBox fx:id="icons" style="-fx-padding: 10 0 0 10;" alignment="BOTTOM_CENTER"></HBox>
         </VBox>
     </children>

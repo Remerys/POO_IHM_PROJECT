@@ -1,16 +1,19 @@
 package projet_ihm;
 
 import java.io.IOException;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class EditorController {
-
-
 
     @FXML
     GridPane gridpane;
@@ -29,13 +32,24 @@ public class EditorController {
     private void createGridPane() {
         Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
         int gridSize = 41;
-        //int buttonSize = 450 / gridSize;
+        // int buttonSize = 450 / gridSize;
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
+                ImageView background = new ImageView(image);
+                background.setPreserveRatio(true);
                 ImageView view = new ImageView(image);
                 view.setPreserveRatio(true);
-                //view.setFitHeight(buttonSize);
-                //view.setFitWidth(buttonSize);
+                // view.setFitHeight(buttonSize);
+                // view.setFitWidth(buttonSize);
+                view.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        // System.out.println("mouse click detected! " + mouseEvent.getSource());
+                        setImage(view);
+                    }
+                });
+
+                gridpane.add(background, i, j);
                 gridpane.add(view, i, j);
             }
         }
@@ -52,6 +66,13 @@ public class EditorController {
 
             Button button = new Button();
             button.setGraphic(view);
+            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    // System.out.println("mouse click detected! " + mouseEvent.getSource());
+                    changeCurrentImage(imageStr);
+                }
+            });
             icons.getChildren().add(button);
         }
     }
@@ -60,6 +81,7 @@ public class EditorController {
     public void initialize() {
         createGridPane();
         createIcons();
+
     }
 
     @FXML
@@ -78,13 +100,15 @@ public class EditorController {
         gridpane.setScaleY(scale / delta);
     }
 
-    // @FXML
-    // public void setImage(int x, int y) {
-    // Image image = new Image(
-    // getClass().getResource(String.format("/images/%s.png",
-    // this.currentImage)).toExternalForm());
-    // ImageView view = new ImageView(image);
-    // gridpane.add(view, x, y);
+    public void changeCurrentImage(String imageStr) {
+        this.currentImage = imageStr;
+    }
 
-    // }
+    @FXML
+    public void setImage(ImageView view) {
+        Image image = new Image(
+                getClass().getResource(String.format("/images/%s.png",
+                        this.currentImage)).toExternalForm());
+        view.setImage(image);
+    }
 }
