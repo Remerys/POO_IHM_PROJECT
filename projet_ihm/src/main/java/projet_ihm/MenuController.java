@@ -17,6 +17,11 @@ public class MenuController {
     }
 
     @FXML
+    private void switchToMultiplayer() throws IOException {
+        App.setRoot("multi");
+    }
+
+    @FXML
     public void initialize() {
         quit.setOnMouseClicked(event -> Platform.exit());
     }
