@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
@@ -22,7 +23,9 @@
       <Button fx:id="local" text="Local" />
       <Button fx:id="create" text="Create Server" />
       <Button fx:id="join" text="Join Server" />
-      <Button fx:id="back" text="Back" onAction="#switchToMenu" />
+      <HBox fx:id="backBar" alignment="CENTER">
+        <Button fx:id="back" text="Back" onAction="#switchToMenu" />
+      </HBox>
    </children>
    <padding>
       <Insets top="0" right="0" bottom="0" left="0" />
