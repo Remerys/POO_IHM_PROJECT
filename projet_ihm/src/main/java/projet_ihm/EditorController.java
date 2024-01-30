@@ -60,12 +60,12 @@ public class EditorController {
 
     @FXML
     private void createIcons() {
-        String[] imagesStr = { "exit", "floor", "food", "key", "potion_defense", "potion_life" };
+        String[] imagesStr = { "floor", "exit", "food", "key", "potion_life", "potion_magic", "potion_physical", "potion_poison", "potion_speed", "potion_defense"  };
         for (String imageStr : imagesStr) {
             Image image = new Image(getClass().getResource(String.format(this.path, imageStr)).toExternalForm());
             ImageView view = new ImageView(image);
-            view.setFitHeight(50);
-            view.setFitWidth(50);
+            view.setFitHeight(45);
+            view.setFitWidth(45);
 
             Button button = new Button();
             button.setGraphic(view);
