@@ -32,6 +32,7 @@
             <ScrollPane fx:id="scrollpane" pannable="true" vbarPolicy="AS_NEEDED">
                 <content>
                     <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml"></GridPane>
+                    <!-- hgap="1" vgap="1" -->
                 </content>
             </ScrollPane>
             <HBox fx:id="icons" style="-fx-padding: 10 0 0 10;" alignment="BOTTOM_CENTER"></HBox>

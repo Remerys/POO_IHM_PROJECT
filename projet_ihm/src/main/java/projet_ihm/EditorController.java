@@ -2,14 +2,14 @@ package projet_ihm;
 
 import java.io.IOException;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -22,6 +22,7 @@ public class EditorController {
     HBox icons;
 
     String currentImage = "floor";
+    String path = "/images/%s.png";
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -30,27 +31,29 @@ public class EditorController {
 
     @FXML
     private void createGridPane() {
-        Image image = new Image(getClass().getResource("/images/floor.png").toExternalForm());
+        Image image = new Image(getClass().getResource(String.format(this.path, "floor")).toExternalForm());
         int gridSize = 41;
-        // int buttonSize = 450 / gridSize;
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 ImageView background = new ImageView(image);
                 background.setPreserveRatio(true);
+
                 ImageView view = new ImageView(image);
                 view.setPreserveRatio(true);
-                // view.setFitHeight(buttonSize);
-                // view.setFitWidth(buttonSize);
                 view.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        // System.out.println("mouse click detected! " + mouseEvent.getSource());
                         setImage(view);
                     }
                 });
 
-                gridpane.add(background, i, j);
-                gridpane.add(view, i, j);
+                Group group = new Group();
+                group.getChildren().add(background);
+                group.getChildren().add(view);
+                // ne fonctionne pas
+                group.setStyle("-fx-border-style : solid; -fx-border-width:100; -fx-border-color: black");
+
+                gridpane.add(group, i, j);
             }
         }
     }
@@ -59,7 +62,7 @@ public class EditorController {
     private void createIcons() {
         String[] imagesStr = { "exit", "floor", "food", "key", "potion_defense", "potion_life" };
         for (String imageStr : imagesStr) {
-            Image image = new Image(getClass().getResource(String.format("/images/%s.png", imageStr)).toExternalForm());
+            Image image = new Image(getClass().getResource(String.format(this.path, imageStr)).toExternalForm());
             ImageView view = new ImageView(image);
             view.setFitHeight(50);
             view.setFitWidth(50);
@@ -69,7 +72,6 @@ public class EditorController {
             button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    // System.out.println("mouse click detected! " + mouseEvent.getSource());
                     changeCurrentImage(imageStr);
                 }
             });
@@ -81,7 +83,22 @@ public class EditorController {
     public void initialize() {
         createGridPane();
         createIcons();
+        handleZoom();
 
+    }
+
+    @FXML
+    private void handleZoom() {
+        gridpane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent e) {
+                // System.out.println(e.getDeltaX() + " " + e.getDeltaY());
+                if (e.getDeltaY() > 0)
+                    zoomIn();
+                else
+                    zoomOut();
+            }
+        });
     }
 
     @FXML
@@ -100,14 +117,14 @@ public class EditorController {
         gridpane.setScaleY(scale / delta);
     }
 
-    public void changeCurrentImage(String imageStr) {
+    private void changeCurrentImage(String imageStr) {
         this.currentImage = imageStr;
     }
 
     @FXML
-    public void setImage(ImageView view) {
+    private void setImage(ImageView view) {
         Image image = new Image(
-                getClass().getResource(String.format("/images/%s.png",
+                getClass().getResource(String.format(this.path,
                         this.currentImage)).toExternalForm());
         view.setImage(image);
     }
