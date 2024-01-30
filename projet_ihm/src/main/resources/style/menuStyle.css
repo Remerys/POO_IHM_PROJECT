@@ -7,6 +7,11 @@
     -fx-font-family: 'Lugrasimo';
 }
 
+.menuContainer {
+    -fx-background-image: url(../images/menu_background.jpeg);
+    -fx-background-size: cover;
+}
+
 .mainTitle {
     -fx-font-size: 52px; 
     -fx-text-fill: white;

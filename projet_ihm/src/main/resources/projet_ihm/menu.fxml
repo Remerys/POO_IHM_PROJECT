@@ -10,8 +10,7 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="projet_ihm.MenuController"
       spacing="10"
-      style='-fx-background-image: url("https://thumb.ac-illust.com/5e/5e4e3ce1645f24998490f8232bfeb520_t.jpeg");
-             -fx-background-size: cover;'
+      styleClass="menuContainer"
       stylesheets="@../style/menuStyle.css"
 >
    <children>
