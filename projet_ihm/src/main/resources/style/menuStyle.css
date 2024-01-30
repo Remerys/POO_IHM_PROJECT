@@ -1,0 +1,29 @@
+@font-face {
+    font-family: Lugrasimo;
+    src: url(../fonts/Lugrasimo-Regular.ttf);
+}
+
+* {
+    -fx-font-family: 'Lugrasimo';
+}
+
+.mainTitle {
+    -fx-font-size: 52px; 
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.menuButton {
+    -fx-font-size: 24px; 
+    -fx-background-color: transparent; /* Set background color to transparent */
+    -fx-border-color: transparent; /* Set border color to transparent */
+    -fx-text-fill: gold;
+}
+
+.menuButton:hover {
+    -fx-text-fill: orange; /* Change text color to orange on hover */
+}
+
+.menuButton:pressed {
+    -fx-text-fill: red; /* Change text color to red when clicked */
+}
