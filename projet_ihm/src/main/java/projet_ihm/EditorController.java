@@ -93,6 +93,7 @@ public class EditorController {
             @Override
             public void handle(ScrollEvent e) {
                 // System.out.println(e.getDeltaX() + " " + e.getDeltaY());
+                if(!e.isControlDown()) return;
                 if (e.getDeltaY() > 0)
                     zoomIn();
                 else
