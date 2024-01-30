@@ -17,6 +17,12 @@ public class MenuController {
     }
 
     @FXML
+    private void switchToSingleplayer() throws IOException {
+        App.setRoot("single");
+    }
+
+
+    @FXML
     private void switchToMultiplayer() throws IOException {
         App.setRoot("multi");
     }
