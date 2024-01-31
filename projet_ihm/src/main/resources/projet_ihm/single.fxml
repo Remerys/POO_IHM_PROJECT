@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.*?>
 
-<BorderPane fx:controller="projet_ihm.EmptyController"
+<BorderPane fx:controller="projet_ihm.SingleplayerController"
             fx:id="root"
             xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -20,12 +20,58 @@
       <Label text="Gauntlet" styleClass="mainTitle" />
    </top>
    <center>
-      <HBox fx:id="characters" alignment="CENTER"></HBox>
+      <HBox fx:id="characters" alignment="CENTER">
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox alignment="CENTER">
+            <Label text="Warrior" styleClass="mainTitle" style="-fx-text-fill: red;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox alignment="CENTER">
+            <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox alignment="CENTER">
+            <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox alignment="CENTER">
+            <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+      </HBox>
    </center>
    <bottom>
       <HBox fx:id="bottomBar" alignment="CENTER">
-         <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
-         <Region styleClass="menuButton" fx:id="spring" />
+         <Button styleClass="menuButton" text="Back" onAction="#switchToMenu" />
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
          <Button styleClass="menuButton" fx:id="start" text="Start" />
       </HBox>
    </bottom>
