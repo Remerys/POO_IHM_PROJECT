@@ -13,24 +13,20 @@
             fx:id="root"
             xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
-            style='-fx-background-image: url("https://thumb.ac-illust.com/5e/5e4e3ce1645f24998490f8232bfeb520_t.jpeg");
-             -fx-background-size: cover;'
+            styleClass="menuContainer"
+            stylesheets="@../style/menuStyle.css"
 >
    <top>
-      <Label text="Gauntlet" 
-             style="-fx-font-family: 'Comic Sans MS'; 
-                    -fx-font-size: 48px; 
-                    -fx-text-fill: white;
-                    -fx-font-weight: bold;"/>
+      <Label text="Gauntlet" styleClass="mainTitle" />
    </top>
    <center>
       <HBox fx:id="characters" alignment="CENTER"></HBox>
    </center>
    <bottom>
       <HBox fx:id="bottomBar" alignment="CENTER">
-         <Button fx:id="back" text="Back" onAction="#switchToMenu" />
-         <Region fx:id="spring" />
-         <Button fx:id="start" text="Start" />
+         <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
+         <Region styleClass="menuButton" fx:id="spring" />
+         <Button styleClass="menuButton" fx:id="start" text="Start" />
       </HBox>
    </bottom>
 
