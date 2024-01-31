@@ -17,16 +17,66 @@
             stylesheets="@../style/menuStyle.css"
 >
    <top>
-      <Label text="Gauntlet" styleClass="mainTitle" />
+      <HBox alignment="CENTER">
+         <Region HBox.hgrow="ALWAYS"/>
+         <Label text="Gauntlet" HBox.hgrow="ALWAYS" styleClass="mainTitle" />
+         <Region HBox.hgrow="ALWAYS"/>
+      </HBox>
    </top>
    <center>
-      <HBox fx:id="characters" alignment="CENTER"></HBox>
+      <HBox fx:id="characters" alignment="CENTER">
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="warriorPane" alignment="CENTER">
+            <Label text="Warrior" styleClass="mainTitle" style="-fx-text-fill: red;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="valkyriePane" alignment="CENTER">
+            <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="elfPane" alignment="CENTER">
+            <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="wizardPane" alignment="CENTER">
+            <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
+            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
+               <graphic>
+                  <ImageView>
+                        <Image url="@../images/treasure.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+      </HBox>
    </center>
    <bottom>
       <HBox fx:id="bottomBar" alignment="CENTER">
-         <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
-         <Region styleClass="menuButton" fx:id="spring" />
-         <Button styleClass="menuButton" fx:id="start" text="Start" />
+         <Button styleClass="menuButton" text="Back" onAction="#switchToMenu" />
+         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
+         <Button styleClass="menuButton" text="Start" onAction="#startGame" />
       </HBox>
    </bottom>
 

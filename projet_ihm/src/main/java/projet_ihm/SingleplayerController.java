@@ -3,33 +3,14 @@ package projet_ihm;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-
 public class SingleplayerController {
 
     @FXML
-    BorderPane root;
+    VBox warriorPane, valkyriePane, elfPane, wizardPane;
 
-    @FXML
-    HBox characters;
-
-    @FXML
-    HBox bottomBar;
-
-    @FXML
-    Region spring;
+    private String selected = "warrior";
+    private VBox selectedVBox = warriorPane;
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -38,50 +19,56 @@ public class SingleplayerController {
 
     @FXML
     public void initialize() {
-        HBox.setHgrow(spring, Priority.ALWAYS);
-        createChracters();
-        bottomBar.setPadding(new Insets(20, 20, 80, 20));
+        this.addHover(warriorPane);
+        this.addHover(valkyriePane);
+        this.addHover(elfPane);
+        this.addHover(wizardPane);
+        this.selectCharacter(warriorPane);
     }
 
-    private void createChracters() {
-        String[] imagesStr = { "warrior", "valkyrie", "elf", "wizard" };
-        String path = "/images/%s.png";
-        characters.setAlignment(Pos.CENTER);
+    @FXML
+    private void startGame() {
+        // TODO : transmettre selected String
+        System.out.println(selected);
+    }
 
-        // left spring
-        Region firstSpring = new Region();
-        HBox.setHgrow(firstSpring, Priority.ALWAYS);
-        characters.getChildren().add(firstSpring);
-
-        for (String imageStr : imagesStr) {
-            Label name = new Label(imageStr.toUpperCase());
-            name.setTextFill(Color.WHITE);
-            name.setFont(new Font("Arial", 30));
-            name.setMaxWidth(Double.MAX_VALUE);
-            name.setAlignment(Pos.CENTER);
-            Image image = new Image(getClass().getResource(String.format(path, imageStr)).toExternalForm());
-            ImageView icon = new ImageView(image);
-            icon.setFitHeight(45);
-            icon.setFitWidth(45);
-            Button button = new Button();
-            button.setGraphic(icon);
-            button.setPadding(new Insets(100, 50, 100, 50));
-
-            // top & bottom spring of each characters
-            Region verticalSpring1 = new Region();
-            VBox.setVgrow(verticalSpring1, Priority.ALWAYS);
-            Region verticalSpring2 = new Region();
-            VBox.setVgrow(verticalSpring2, Priority.ALWAYS);
-
-            VBox pane = new VBox(20, verticalSpring1, name, button, verticalSpring2);
-
-            characters.getChildren().add(pane);
-
-            // right spring for each character
-            Region spring = new Region();
-            HBox.setHgrow(spring, Priority.ALWAYS);
-            characters.getChildren().add(spring);
+    private void selectCharacter(VBox Pane) {
+        String border = "-fx-border-width: 0;";
+        warriorPane.setStyle(border);
+        valkyriePane.setStyle(border);
+        elfPane.setStyle(border);
+        wizardPane.setStyle(border);
+        border = "-fx-border-color: black; -fx-border-width: 5; -fx-border-style: segments(10, 15, 15, 15)  line-cap round;";
+        Pane.setStyle(border);
+        selectedVBox = Pane;
+        if (Pane == warriorPane) {
+            selected = "warrior";
+        } else if (Pane == valkyriePane) {
+            selected = "valkyrie";
+        } else if (Pane == elfPane) {
+            selected = "elf";
+        } else if (Pane == wizardPane) {
+            selected = "wizard";
         }
+    }
+
+    private void addHover(VBox Pane) {
+        Pane.setOnMouseEntered(event -> {
+            if (Pane != selectedVBox) {
+                String border = "-fx-border-color: white; -fx-border-width: 2; -fx-border-style: solid;";
+                Pane.setStyle(border);
+            }
+        });
+        Pane.setOnMouseExited(event -> {
+            if (Pane != selectedVBox) {
+                String border = "-fx-border-width: 0;";
+                Pane.setStyle(border);
+            }
+        });
+        Pane.setOnMouseClicked(event -> {
+            this.selectCharacter(Pane);
+            selectedVBox = Pane;
+        });
     }
 
 }
