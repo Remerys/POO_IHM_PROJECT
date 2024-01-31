@@ -16,6 +16,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+
 public class SingleplayerController {
 
     @FXML
@@ -34,12 +35,12 @@ public class SingleplayerController {
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
     }
-    
+
     @FXML
     public void initialize() {
         HBox.setHgrow(spring, Priority.ALWAYS);
         createChracters();
-        bottomBar.setPadding(new Insets(20,20,80,20));
+        bottomBar.setPadding(new Insets(20, 20, 80, 20));
     }
 
     private void createChracters() {
@@ -64,7 +65,7 @@ public class SingleplayerController {
             icon.setFitWidth(45);
             Button button = new Button();
             button.setGraphic(icon);
-            button.setPadding(new Insets(100,50,100,50));
+            button.setPadding(new Insets(100, 50, 100, 50));
 
             // top & bottom spring of each characters
             Region verticalSpring1 = new Region();
@@ -73,7 +74,7 @@ public class SingleplayerController {
             VBox.setVgrow(verticalSpring2, Priority.ALWAYS);
 
             VBox pane = new VBox(20, verticalSpring1, name, button, verticalSpring2);
-            
+
             characters.getChildren().add(pane);
 
             // right spring for each character
@@ -82,5 +83,5 @@ public class SingleplayerController {
             characters.getChildren().add(spring);
         }
     }
-    
+
 }
