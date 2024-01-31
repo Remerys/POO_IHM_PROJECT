@@ -1,7 +1,6 @@
 package projet_ihm;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +24,7 @@ public class EditorController {
     String currentImage = "floor";
     String path = "/images/%s.png";
     int rotation = 0;
+    MultipleImages currentPreview;
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -33,25 +33,41 @@ public class EditorController {
 
     @FXML
     private void createGridPane() {
-        Image image = new Image(getClass().getResource(String.format(this.path, "floor")).toExternalForm());
+        Image floor = new Image(getClass().getResource(String.format(this.path, "floor")).toExternalForm());
+        Image none = new Image(getClass().getResource(String.format(this.path, "none")).toExternalForm());
         int gridSize = 41;
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                ImageView background = new ImageView(image);
+                ImageView background = new ImageView(floor);
                 background.setPreserveRatio(true);
-
-                MultipleImages view = new MultipleImages(image);
+                MultipleImages view = new MultipleImages(none);
                 view.setPreserveRatio(true);
-                view.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        setImage(view);
-                    }
-                });
+                MultipleImages preview = new MultipleImages(none);
+                preview.setPreserveRatio(true);
+
+                // ATTENTION les zones transparentes ne sont pas clickable
+                // => Plusieurs couches clickables
+
+                // preview
+                background.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview)); // sort
+                view.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview));
+                preview.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview));
+
+                background.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview)); // entre
+                view.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+                preview.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+
+                background.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview)); // tourne
+                view.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+                preview.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+
+                // view
+                background.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
+                view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
+                preview.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
 
                 Group group = new Group();
-                group.getChildren().add(background);
-                group.getChildren().add(view);
+                group.getChildren().addAll(background, view, preview);
                 // ne fonctionne pas
                 group.setStyle("-fx-border-style : solid; -fx-border-width:100; -fx-border-color: black");
 
@@ -89,6 +105,27 @@ public class EditorController {
         handleZoom();
         handleRotate();
 
+    }
+
+    private void handlePreviewEntered(MultipleImages preview) {
+        if (this.currentImage != "floor") {
+            this.currentPreview = preview;
+            double opacity = 0.66;
+
+            Image image = new Image(
+                    getClass().getResource(String.format(this.path, this.currentImage)).toExternalForm());
+            preview.changeImage(image);
+            preview.setOpacity(opacity);
+            preview.setImageIndex(this.rotation);
+        }
+    }
+
+    private void handlePreviewExited(MultipleImages preview) {
+        if (this.currentImage != "floor") {
+            Image image = new Image(
+                    getClass().getResource(String.format(this.path, "none")).toExternalForm());
+            this.currentPreview.changeImage(image);
+        }
     }
 
     @FXML
