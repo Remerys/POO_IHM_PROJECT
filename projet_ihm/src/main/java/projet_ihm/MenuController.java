@@ -21,10 +21,14 @@ public class MenuController {
         App.setRoot("single");
     }
 
-
     @FXML
     private void switchToMultiplayer() throws IOException {
         App.setRoot("multi");
+    }
+
+    @FXML
+    private void switchToHallOfFame() throws IOException {
+        App.setRoot("hall_of_fame");
     }
 
     @FXML

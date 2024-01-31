@@ -36,3 +36,11 @@
 .menuButton:pressed {
     -fx-text-fill: red; /* Change text color to red when clicked */
 }
+
+.scroll-pane{
+    -fx-background-color:rgba(0,0,0,0.5);
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
