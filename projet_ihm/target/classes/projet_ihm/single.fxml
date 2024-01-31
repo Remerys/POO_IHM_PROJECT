@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.*?>
 
-<BorderPane fx:controller="projet_ihm.SingleplayerController"
+<BorderPane fx:controller="projet_ihm.EmptyController"
             fx:id="root"
             xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"

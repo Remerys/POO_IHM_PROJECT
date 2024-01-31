@@ -39,7 +39,7 @@ public class SingleplayerController {
     public void initialize() {
         HBox.setHgrow(spring, Priority.ALWAYS);
         createChracters();
-        bottomBar.setPadding(new Insets(20,20,80,20));
+        bottomBar.setPadding(new Insets(20,20,50,20));
     }
 
     private void createChracters() {
