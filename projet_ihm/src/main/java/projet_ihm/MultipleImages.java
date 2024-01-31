@@ -32,7 +32,6 @@ public class MultipleImages extends ImageView {
             i %= this.nbImages;
         int indexX = i % this.nbImagesX;
         int indexY = (i / this.nbImagesX) % this.nbImagesY;
-        System.out.println(indexX + " " + indexY);
         this.setViewport(
                 new Rectangle2D(indexX * this.IMAGE_SIZE, indexY * this.IMAGE_SIZE, this.IMAGE_SIZE, this.IMAGE_SIZE));
     }

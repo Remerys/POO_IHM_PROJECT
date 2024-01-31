@@ -96,7 +96,6 @@ public class EditorController {
         gridpane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent e) {
-                // System.out.println(e.getDeltaX() + " " + e.getDeltaY());
                 if (!e.isControlDown())
                     return;
                 if (e.getDeltaY() > 0)
@@ -142,7 +141,6 @@ public class EditorController {
         gridpane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent e) {
-                // System.out.println(e.getDeltaX() + " " + e.getDeltaY());
                 if (e.getDeltaY() > 0)
                     increaseRotation();
                 else
@@ -153,12 +151,9 @@ public class EditorController {
 
     private void increaseRotation() {
         this.rotation += 1;
-        // System.out.println(this.rotation);
     }
 
     private void decreaseRotation() {
         this.rotation -= 1;
-
-        // System.out.println(this.rotation);
     }
 }
