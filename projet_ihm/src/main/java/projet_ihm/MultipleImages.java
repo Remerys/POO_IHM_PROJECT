@@ -15,6 +15,8 @@ public class MultipleImages extends ImageView {
     public MultipleImages(Image image) {
         super(image);
         this.calcul(image);
+        this.setFitWidth(this.nbImagesX * this.IMAGE_SIZE);
+        this.setFitHeight(this.nbImagesY * this.IMAGE_SIZE);
     }
 
     private void calcul(Image image) {
