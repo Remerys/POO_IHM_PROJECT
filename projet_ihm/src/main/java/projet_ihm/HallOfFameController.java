@@ -34,6 +34,7 @@ public class HallOfFameController {
                 if (row == 0) {
                     if (column == 0) {
                         Label label = new Label("Rank");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
@@ -41,6 +42,7 @@ public class HallOfFameController {
                     }
                     if (column == 1) {
                         Label label = new Label("Player");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
@@ -48,6 +50,7 @@ public class HallOfFameController {
                     }
                     if (column == 2) {
                         Label label = new Label("Score");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
@@ -55,6 +58,7 @@ public class HallOfFameController {
                     }
                     if (column == 3) {
                         Label label = new Label("Date");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
@@ -63,24 +67,28 @@ public class HallOfFameController {
                 } else {
                     if (column == 0) {
                         Label label = new Label(String.valueOf(row));
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
                         GridPane.setRowIndex(label, row);
                     } else if (column == 1) {
                         Label label = new Label("---");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
                         GridPane.setRowIndex(label, row);
                     } else if (column == 2) {
                         Label label = new Label(String.valueOf(0));
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
                         GridPane.setRowIndex(label, row);
                     } else if (column == 3) {
                         Label label = new Label("---");
+                        label.getStyleClass().add("menuText");
                         GridPane.setHalignment(label, HPos.CENTER);
                         dataContainer.getChildren().add(label);
                         GridPane.setColumnIndex(label, column);
