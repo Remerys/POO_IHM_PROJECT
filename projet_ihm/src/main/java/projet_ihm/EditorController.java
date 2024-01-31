@@ -1,6 +1,7 @@
 package projet_ihm;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ public class EditorController {
 
     String currentImage = "floor";
     String path = "/images/%s.png";
+    int rotation = 0;
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -38,7 +40,7 @@ public class EditorController {
                 ImageView background = new ImageView(image);
                 background.setPreserveRatio(true);
 
-                ImageView view = new ImageView(image);
+                MultipleImages view = new MultipleImages(image);
                 view.setPreserveRatio(true);
                 view.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
@@ -60,10 +62,11 @@ public class EditorController {
 
     @FXML
     private void createIcons() {
-        String[] imagesStr = { "floor", "exit", "food", "key", "potion_life", "potion_magic", "potion_physical", "potion_poison", "potion_speed", "potion_defense"  };
+        String[] imagesStr = { "floor", "exit", "food", "key", "potion_life", "potion_magic", "potion_physical",
+                "potion_poison", "potion_speed", "potion_defense", "door" };
         for (String imageStr : imagesStr) {
             Image image = new Image(getClass().getResource(String.format(this.path, imageStr)).toExternalForm());
-            ImageView view = new ImageView(image);
+            MultipleImages view = new MultipleImages(image);
             view.setFitHeight(45);
             view.setFitWidth(45);
 
@@ -84,6 +87,7 @@ public class EditorController {
         createGridPane();
         createIcons();
         handleZoom();
+        handleRotate();
 
     }
 
@@ -92,8 +96,8 @@ public class EditorController {
         gridpane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent e) {
-                // System.out.println(e.getDeltaX() + " " + e.getDeltaY());
-                if(!e.isControlDown()) return;
+                if (!e.isControlDown())
+                    return;
                 if (e.getDeltaY() > 0)
                     zoomIn();
                 else
@@ -123,10 +127,33 @@ public class EditorController {
     }
 
     @FXML
-    private void setImage(ImageView view) {
+    private void setImage(MultipleImages view) {
         Image image = new Image(
                 getClass().getResource(String.format(this.path,
                         this.currentImage)).toExternalForm());
-        view.setImage(image);
+
+        view.changeImage(image);
+        view.setImageIndex(this.rotation);
+    }
+
+    @FXML
+    private void handleRotate() {
+        gridpane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent e) {
+                if (e.getDeltaY() > 0)
+                    increaseRotation();
+                else
+                    decreaseRotation();
+            }
+        });
+    }
+
+    private void increaseRotation() {
+        this.rotation += 1;
+    }
+
+    private void decreaseRotation() {
+        this.rotation -= 1;
     }
 }

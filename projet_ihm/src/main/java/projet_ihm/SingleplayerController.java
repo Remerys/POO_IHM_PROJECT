@@ -9,10 +9,10 @@ public class SingleplayerController {
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
     }
-    
+
     @FXML
     public void initialize() {
 
     }
-    
+
 }
