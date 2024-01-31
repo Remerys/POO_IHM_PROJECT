@@ -19,6 +19,7 @@
     <children>
         <MenuBar>
             <Menu mnemonicParsing="false" text="File">
+                <MenuItem mnemonicParsing="false" text="New"/>
                 <MenuItem mnemonicParsing="false" text="Save"/>
                 <MenuItem mnemonicParsing="false" text="Load"/>
                 <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Return to the menu" onAction="#switchToMenu"/>
