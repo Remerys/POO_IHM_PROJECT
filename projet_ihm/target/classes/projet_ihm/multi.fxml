@@ -11,20 +11,16 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="projet_ihm.MultiplayerController"
       spacing="10"
-      style='-fx-background-image: url("https://thumb.ac-illust.com/5e/5e4e3ce1645f24998490f8232bfeb520_t.jpeg");
-             -fx-background-size: cover;'
+      styleClass="menuContainer"
+      stylesheets="@../style/menuStyle.css"
 >
    <children>
-      <Label text="Gauntlet" 
-      style="-fx-font-family: 'Comic Sans MS'; 
-             -fx-font-size: 48px; 
-             -fx-text-fill: white;
-             -fx-font-weight: bold;"/>
-      <Button fx:id="local" text="Local" />
-      <Button fx:id="create" text="Create Server" />
-      <Button fx:id="join" text="Join Server" />
+      <Label text="Gauntlet" styleClass="mainTitle" />
+      <Button styleClass="menuButton" fx:id="local" text="Local" />
+      <Button styleClass="menuButton" fx:id="create" text="Create Server" />
+      <Button styleClass="menuButton" fx:id="join" text="Join Server" />
       <HBox fx:id="backBar" alignment="CENTER">
-        <Button fx:id="back" text="Back" onAction="#switchToMenu" />
+        <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
       </HBox>
    </children>
    <padding>
