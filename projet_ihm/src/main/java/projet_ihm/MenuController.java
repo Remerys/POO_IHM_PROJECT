@@ -27,6 +27,12 @@ public class MenuController {
     }
 
     @FXML
+    private void switchToConfiguration() throws IOException {
+        // TODO : Configurations
+        //App.setRoot("configuration");
+    }
+
+    @FXML
     private void switchToHallOfFame() throws IOException {
         App.setRoot("hall_of_fame");
     }
