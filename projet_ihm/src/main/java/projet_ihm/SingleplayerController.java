@@ -27,6 +27,7 @@ public class SingleplayerController {
         this.addEvent(elfPane);
         this.addEvent(wizardPane);
         selectedVBox = warriorPane;
+        this.selectCharacter(warriorPane);
     }
 
     @FXML
