@@ -27,9 +27,10 @@ public class SingleplayerController {
     }
 
     @FXML
-    private void startGame() {
+    private void startGame() throws IOException {
         // TODO : transmettre selected String
         System.out.println(selected);
+        App.setRoot("game");
     }
 
     private void selectCharacter(VBox Pane) {
