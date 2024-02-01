@@ -25,8 +25,8 @@
    </top>
    <center>
       <HBox fx:id="characters" alignment="CENTER">
-         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
-         <VBox fx:id="warriorPane" alignment="CENTER">
+         <Region HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="warriorPane" alignment="CENTER" styleClass="character">
             <Label text="Warrior" styleClass="mainTitle" style="-fx-text-fill: red;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
                <graphic>
@@ -36,8 +36,8 @@
                </graphic>
             </Button>
          </VBox>
-         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
-         <VBox fx:id="valkyriePane" alignment="CENTER">
+         <Region HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="valkyriePane" alignment="CENTER" styleClass="character">
             <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
                <graphic>
@@ -47,8 +47,8 @@
                </graphic>
             </Button>
          </VBox>
-         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
-         <VBox fx:id="elfPane" alignment="CENTER">
+         <Region HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="elfPane" alignment="CENTER" styleClass="character">
             <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
                <graphic>
@@ -58,8 +58,8 @@
                </graphic>
             </Button>
          </VBox>
-         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
-         <VBox fx:id="wizardPane" alignment="CENTER">
+         <Region HBox.hgrow="ALWAYS" ></Region>
+         <VBox fx:id="wizardPane" alignment="CENTER" styleClass="character">
             <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
                <graphic>
