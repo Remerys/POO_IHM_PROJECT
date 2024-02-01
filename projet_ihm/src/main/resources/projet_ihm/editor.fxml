@@ -19,10 +19,11 @@
     <children>
         <MenuBar>
             <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" text="New"/>
-                <MenuItem mnemonicParsing="false" text="Save"/>
-                <MenuItem mnemonicParsing="false" text="Load"/>
-                <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Return to the menu" onAction="#switchToMenu"/>
+                <MenuItem mnemonicParsing="false" text="Create new map"/>
+                <MenuItem mnemonicParsing="false" text="Save map"/>
+                <MenuItem mnemonicParsing="false" text="Save map as..."/>
+                <MenuItem mnemonicParsing="false" text="Open map file"/>
+                <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Exit editor" onAction="#switchToMenu"/>
             </Menu>
             <Menu text="View">
                 <MenuItem mnemonicParsing="false" text="Zoom +" onAction="#zoomIn"/>
