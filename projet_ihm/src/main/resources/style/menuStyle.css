@@ -31,6 +31,7 @@
 
 .menuButton:hover {
     -fx-text-fill: orange; /* Change text color to orange on hover */
+    -fx-cursor: hand;
 }
 
 .menuButton:pressed {
