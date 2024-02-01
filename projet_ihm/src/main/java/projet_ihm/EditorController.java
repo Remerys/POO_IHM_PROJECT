@@ -83,6 +83,7 @@ public class EditorController {
         for (String imageStr : imagesStr) {
             Image image = new Image(getClass().getResource(String.format(this.path, imageStr)).toExternalForm());
             MultipleImages view = new MultipleImages(image);
+            view.setImageIndex(0);
             view.setFitHeight(45);
             view.setFitWidth(45);
 
