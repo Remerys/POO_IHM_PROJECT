@@ -9,12 +9,11 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
 
 
+<?import java.lang.String?>
 <BorderPane
       xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -66,17 +65,26 @@
                 <Region HBox.hgrow="ALWAYS" />
                 <VBox>
                     <Label text="Screen Resolution" styleClass="menuText" />
-                    <ComboBox promptText="Select a resolution">
+                    <ComboBox promptText="1280 x 720">
                         <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="1920 x 1080"/>
+                                <String fx:value="1280 x 720"/>
+                                <!-- Add more languages as needed -->
+                            </FXCollections>
                         </items>
                     </ComboBox>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS" />
                 <VBox>
                     <Label text="Language" styleClass="menuText" />
-                    <ComboBox promptText="Select a language">
+                    <ComboBox promptText="English">
                         <items>
-                            
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="English"/>
+                                <String fx:value="Français"/>
+                                <!-- Add more languages as needed -->
+                            </FXCollections>
                         </items>
                     </ComboBox>
                 </VBox>
@@ -88,10 +96,7 @@
       <HBox>
         <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
         <Region HBox.hgrow="ALWAYS" />
-        <Button styleClass="menuButton" fx:id="back" text="Apply Changes" />
+        <Button styleClass="menuButton" fx:id="apply" text="Apply Changes" />
       </HBox>
    </bottom>
-   <padding>
-      <Insets top="0" right="0" bottom="0" left="0" />
-   </padding>
 </BorderPane>
