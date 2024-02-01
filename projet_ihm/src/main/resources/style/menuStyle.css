@@ -53,7 +53,6 @@
 }
 
 .character:hover {
-    -fx-border-color: white;
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.521), 2, 1, 0px, 0px);
     -fx-cursor: hand;
 }

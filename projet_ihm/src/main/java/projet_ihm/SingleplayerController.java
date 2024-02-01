@@ -13,7 +13,7 @@ public class SingleplayerController {
     private String selected = "warrior";
     private VBox selectedVBox = warriorPane;
 
-    private String borderSelected = "-fx-border-color: white; -fx-border-width: 5; -fx-border-style: segments(10, 15, 15, 15)  line-cap round;";
+    private String borderSelected = "-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.721), 2, 1, 0px, 0px);";
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -37,7 +37,7 @@ public class SingleplayerController {
     }
 
     private void selectCharacter(VBox Pane) {
-        String border = "-fx-border-width: 0;";
+        String border = "";
         selectedVBox.setStyle(border);
         Pane.setStyle(borderSelected);
         selectedVBox = Pane;
