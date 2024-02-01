@@ -3,3 +3,4 @@ projet_ihm/bin/
 projet_ihm/target/classes/*.class
 projet_ihm/target/classes/projet_ihm/*.class
 *.class
+.idea/
