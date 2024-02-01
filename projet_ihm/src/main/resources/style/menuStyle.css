@@ -59,5 +59,9 @@
 
 ComboBox {
     -fx-font-family: 'Lugrasimo';
+    -fx-background-color: gold;
+}
+
+ComboBox:hover {
     -fx-background-color: orange;
 }

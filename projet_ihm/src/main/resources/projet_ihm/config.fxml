@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.collections.FXCollections?>
@@ -29,21 +31,37 @@
     </top>
     <center>
         <VBox>
-            <GridPane alignment="CENTER" hgap="10" vgap="10" styleClass="menuSubPane">
-                <Label text="Controls" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="menuText" />
-                <Label text="Player 1" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="menuText" />
-                <Label text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="menuText" />
-                <Label text="Player 3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="menuText" />
-                <Label text="Player 4" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="menuText" />
+            <HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <ScrollPane styleClass="menuSubPane" HBox.hgrow="ALWAYS" >
+                    <content>
+                        <GridPane alignment="CENTER" hgap="10" vgap="10" fx:id="uiControlsPane">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="20"/>
+                            </columnConstraints>
 
-                <Label text="Up" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="menuText" />
-                <Label text="Down" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="menuText" />
-                <Label text="Left" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="menuText" />
-                <Label text="Right" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="menuText" />
-                <Label text="Attack" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="menuText" />
-                <Label text="Resurect" GridPane.columnIndex="0" GridPane.rowIndex="6" styleClass="menuText" />
-                <Label text="Use Bomb" GridPane.columnIndex="0" GridPane.rowIndex="7" styleClass="menuText" />
-            </GridPane>
+                            <Label text="Controls" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="menuText" />
+                            <Label text="Player 1" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="menuText" />
+                            <Label text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="menuText" />
+                            <Label text="Player 3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="menuText" />
+                            <Label text="Player 4" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="menuText" />
+            
+                            <Label text="Up" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="menuText" />
+                            <Label text="Down" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="menuText" />
+                            <Label text="Left" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="menuText" />
+                            <Label text="Right" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="menuText" />
+                            <Label text="Attack" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="menuText" />
+                            <Label text="Resurect" GridPane.columnIndex="0" GridPane.rowIndex="6" styleClass="menuText" />
+                            <Label text="Use Bomb" GridPane.columnIndex="0" GridPane.rowIndex="7" styleClass="menuText" />
+                        </GridPane>
+                    </content>
+                </ScrollPane>
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
             <HBox>
                 <Region HBox.hgrow="ALWAYS" />
                 <VBox>
