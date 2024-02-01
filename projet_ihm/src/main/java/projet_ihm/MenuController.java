@@ -28,8 +28,7 @@ public class MenuController {
 
     @FXML
     private void switchToConfiguration() throws IOException {
-        // TODO : Configurations
-        //App.setRoot("configuration");
+        App.setRoot("config");
     }
 
     @FXML

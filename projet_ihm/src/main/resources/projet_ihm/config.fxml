@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+
+<BorderPane
+      xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="projet_ihm.ConfigController"
+      styleClass="menuContainer"
+      stylesheets="@../style/menuStyle.css"
+>
+    <top>
+        <HBox alignment="CENTER">
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Gauntlet" HBox.hgrow="ALWAYS" styleClass="mainTitle" />
+            <Region HBox.hgrow="ALWAYS"/>
+         </HBox>
+    </top>
+    <center>
+        <VBox>
+            <GridPane alignment="CENTER" hgap="10" vgap="10" styleClass="menuSubPane">
+                <Label text="Controls" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="menuText" />
+                <Label text="Player 1" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="menuText" />
+                <Label text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="menuText" />
+                <Label text="Player 3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="menuText" />
+                <Label text="Player 4" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="menuText" />
+
+                <Label text="Up" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="menuText" />
+                <Label text="Down" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="menuText" />
+                <Label text="Left" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="menuText" />
+                <Label text="Right" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="menuText" />
+                <Label text="Attack" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="menuText" />
+                <Label text="Resurect" GridPane.columnIndex="0" GridPane.rowIndex="6" styleClass="menuText" />
+                <Label text="Use Bomb" GridPane.columnIndex="0" GridPane.rowIndex="7" styleClass="menuText" />
+            </GridPane>
+            <HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <VBox>
+                    <Label text="Screen Resolution" styleClass="menuText" />
+                    <ComboBox promptText="Select a resolution">
+                        <items>
+                        </items>
+                    </ComboBox>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <VBox>
+                    <Label text="Language" styleClass="menuText" />
+                    <ComboBox promptText="Select a language">
+                        <items>
+                            
+                        </items>
+                    </ComboBox>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+        </VBox>
+    </center>
+   <bottom>
+      <HBox>
+        <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button styleClass="menuButton" fx:id="back" text="Apply Changes" />
+      </HBox>
+   </bottom>
+   <padding>
+      <Insets top="0" right="0" bottom="0" left="0" />
+   </padding>
+</BorderPane>
