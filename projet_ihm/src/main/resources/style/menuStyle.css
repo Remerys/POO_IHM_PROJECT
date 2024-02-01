@@ -17,7 +17,7 @@
     -fx-font-family: 'Rakkas';
     -fx-font-size: 52px; 
     -fx-text-fill: #e3a72f;
-    -fx-effect: dropshadow(gaussian, black, 35px, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 4, 1, 0px, 0px);
 }
 
 .menuButton {
@@ -26,7 +26,7 @@
     -fx-background-color: transparent; /* Set background color to transparent */
     -fx-border-color: transparent; /* Set border color to transparent */
     -fx-text-fill: gold;
-    -fx-effect: dropshadow(gaussian, black, 25px, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 2, 1, 0px, 0px);
 }
 
 .menuButton:hover {
