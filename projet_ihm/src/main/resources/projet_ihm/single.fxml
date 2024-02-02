@@ -23,6 +23,7 @@
          <Region HBox.hgrow="ALWAYS"/>
       </HBox>
    </top>
+
    <center>
       <HBox fx:id="characters" alignment="CENTER">
          <Region HBox.hgrow="ALWAYS" ></Region>
@@ -36,7 +37,9 @@
                </graphic>
             </Button>
          </VBox>
+
          <Region HBox.hgrow="ALWAYS" ></Region>
+
          <VBox fx:id="valkyriePane" alignment="CENTER" styleClass="character">
             <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
@@ -47,7 +50,9 @@
                </graphic>
             </Button>
          </VBox>
+
          <Region HBox.hgrow="ALWAYS" ></Region>
+
          <VBox fx:id="elfPane" alignment="CENTER" styleClass="character">
             <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
@@ -58,7 +63,9 @@
                </graphic>
             </Button>
          </VBox>
+
          <Region HBox.hgrow="ALWAYS" ></Region>
+         
          <VBox fx:id="wizardPane" alignment="CENTER" styleClass="character">
             <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
@@ -69,9 +76,11 @@
                </graphic>
             </Button>
          </VBox>
+
          <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
       </HBox>
    </center>
+   
    <bottom>
       <HBox fx:id="bottomBar" alignment="CENTER">
          <Button styleClass="menuButton" text="Back" onAction="#switchToMenu" />
