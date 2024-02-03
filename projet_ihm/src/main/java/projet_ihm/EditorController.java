@@ -91,8 +91,7 @@ public class EditorController {
 
     @FXML
     private void createIcons() {
-        String[] imagesStr = { "floor", "exit", "food", "key", "potion_life", "potion_magic", "potion_physical",
-                "potion_poison", "potion_speed", "potion_defense", "door" };
+        String[] imagesStr = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
         for (String imageStr : imagesStr) {
             Image image = getImage(imageStr);
             MultipleImages view = new MultipleImages(image);
