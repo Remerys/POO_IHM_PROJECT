@@ -15,32 +15,31 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.control.ScrollPane?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_ihm.EditorController">
-    <children>
-        <MenuBar>
-            <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" text="Create new map"/>
-                <MenuItem mnemonicParsing="false" text="Save map"/>
-                <MenuItem mnemonicParsing="false" text="Save map as..."/>
-                <MenuItem mnemonicParsing="false" text="Open map file"/>
-                <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Exit editor" onAction="#switchToMenu"/>
-            </Menu>
-            <Menu text="View">
-                <MenuItem mnemonicParsing="false" text="Zoom +" onAction="#zoomIn"/>
-                <MenuItem mnemonicParsing="false" text="Zoom -" onAction="#zoomOut"/>
-            </Menu>
-        </MenuBar>
-        <VBox>
-            <ScrollPane fx:id="scrollpane" pannable="true" vbarPolicy="AS_NEEDED">
-                <content>
-                    <GridPane fx:id="gridpane" xmlns:fx="http://javafx.com/fxml"></GridPane>
-                    <!-- hgap="1" vgap="1" -->
-                </content>
-            </ScrollPane>
-            <HBox fx:id="icons" style="-fx-padding: 10 0 0 10;" alignment="BOTTOM_CENTER"></HBox>
-        </VBox>
-    </children>
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="projet_ihm.EditorController"
+      stylesheets="@../style/editorStyle.css"
+      styleClass="editor">
     <padding>
-        <Insets top="0" right="0" bottom="0" left="0" />
+        <!--Insets top="0" right="0" bottom="0" left="0"/-->
     </padding>
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" text="Create new map"/>
+            <MenuItem mnemonicParsing="false" text="Save map"/>
+            <MenuItem mnemonicParsing="false" text="Save map as..."/>
+            <MenuItem mnemonicParsing="false" text="Open map file"/>
+            <MenuItem mnemonicParsing="false" text="Exit editor" onAction="#switchToMenu"/>
+        </Menu>
+        <Menu text="View">
+            <MenuItem mnemonicParsing="false" text="Zoom +" onAction="#zoomIn"/>
+            <MenuItem mnemonicParsing="false" text="Zoom -" onAction="#zoomOut"/>
+        </Menu>
+    </MenuBar>
+    <VBox>
+        <ScrollPane pannable="true" >
+            <GridPane fx:id="gridpane"/>
+        </ScrollPane>
+        <HBox fx:id="icons" styleClass="icons" alignment="BOTTOM_CENTER"/>
+    </VBox>
 </VBox>
