@@ -5,3 +5,4 @@ projet_ihm/target/classes/projet_ihm/*.class
 *.class
 .idea/
 out/
+target/
