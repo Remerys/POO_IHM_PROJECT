@@ -1,17 +1,23 @@
 package projet_ihm;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class EditorController {
 
@@ -25,6 +31,8 @@ public class EditorController {
     String path = "/images/%s.png";
     int rotation = 0;
     MultipleImages currentPreview;
+    private int sizeX;
+    private int sizeY;
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -33,11 +41,10 @@ public class EditorController {
 
     @FXML
     private void createGridPane() {
-        Image floor = new Image(getClass().getResource(String.format(this.path, "floor")).toExternalForm());
-        Image none = new Image(getClass().getResource(String.format(this.path, "none")).toExternalForm());
-        int gridSize = 41;
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
+        Image floor = getImage("floor");
+        Image none = getImage("none");
+        for (int i = 0; i < this.sizeX; i++) {
+            for (int j = 0; j < this.sizeY; j++) {
                 ImageView background = new ImageView(floor);
                 background.setPreserveRatio(true);
                 MultipleImages view = new MultipleImages(none);
@@ -49,22 +56,22 @@ public class EditorController {
                 // => Plusieurs couches clickables
 
                 // preview
-                background.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview)); // sort
-                view.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview));
-                preview.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited(preview));
+                background.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited()); // sort
+                view.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
+                preview.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
 
-                background.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview)); // entre
-                view.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
-                preview.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+                background.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview)); // entre
+                view.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+                preview.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
 
-                background.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview)); // tourne
-                view.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
-                preview.addEventHandler(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+                background.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview)); // tourne
+                view.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+                preview.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
 
                 // view
-                background.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
-                view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
-                preview.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
+                background.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
+                view.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
+                preview.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> setImage(view));
 
                 Group group = new Group();
                 group.getChildren().addAll(background, view, preview);
@@ -76,12 +83,17 @@ public class EditorController {
         }
     }
 
+    private Image getImage(String name) {
+        URL url = getClass().getResource(String.format(this.path, name));
+        assert url != null;
+        return new Image(url.toExternalForm());
+    }
+
     @FXML
     private void createIcons() {
-        String[] imagesStr = { "floor", "exit", "food", "key", "potion_life", "potion_magic", "potion_physical",
-                "potion_poison", "potion_speed", "potion_defense", "door" };
+        String[] imagesStr = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
         for (String imageStr : imagesStr) {
-            Image image = new Image(getClass().getResource(String.format(this.path, imageStr)).toExternalForm());
+            Image image = getImage(imageStr);
             MultipleImages view = new MultipleImages(image);
             view.setImageIndex(0);
             view.setFitHeight(45);
@@ -89,42 +101,78 @@ public class EditorController {
 
             Button button = new Button();
             button.setGraphic(view);
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    changeCurrentImage(imageStr);
-                }
-            });
+            button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> changeCurrentImage(imageStr));
             icons.getChildren().add(button);
         }
     }
 
     @FXML
-    public void initialize() {
-        createGridPane();
-        createIcons();
-        handleZoom();
-        handleRotate();
+    public void initialize() throws IOException {
+        this.menuStart();
+        System.out.println(this.sizeX + " " + this.sizeY);
+        if (this.sizeX <= 0 || this.sizeY <= 0) {
+            this.switchToMenu();
+        }
+
 
     }
 
+    private void launchGrid() {
+        this.createGridPane();
+        this.createIcons();
+        this.handleZoom();
+        this.handleRotate();
+    }
+
+    @FXML
+    private void menuStart() {
+        Stage stage = new Stage();
+        VBox pane = new VBox();
+        Label label = new Label("");
+
+        TextField sizeXField = new TextField();
+        TextField sizeYField = new TextField();
+
+        Button button = new Button("OK");
+        button.setOnAction(e -> {
+            try {
+                this.sizeX = Integer.parseInt(sizeXField.getText());
+                this.sizeY = Integer.parseInt(sizeYField.getText());
+                if (this.sizeX > 0 && this.sizeY > 0) {
+                    stage.close();
+                    this.launchGrid();
+                } else {
+                    label.setText("Les nombres doivent être positifs");
+                }
+            } catch (NumberFormatException ex) {
+                label.setText("Ceci n'est pas un nombre.");
+            }
+        });
+
+        pane.getChildren().addAll(label, sizeXField, sizeYField, button);
+
+        stage.setOnCloseRequest(e -> e.consume()); //ne peut pas se fermer
+
+        Scene scene = new Scene(pane, 200, 200);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     private void handlePreviewEntered(MultipleImages preview) {
-        if (this.currentImage != "floor") {
+        if (!this.currentImage.equals("floor")) {
             this.currentPreview = preview;
             double opacity = 0.66;
 
-            Image image = new Image(
-                    getClass().getResource(String.format(this.path, this.currentImage)).toExternalForm());
+            Image image = getImage(this.currentImage);
             preview.changeImage(image);
             preview.setOpacity(opacity);
             preview.setImageIndex(this.rotation);
         }
     }
 
-    private void handlePreviewExited(MultipleImages preview) {
-        if (this.currentImage != "floor") {
-            Image image = new Image(
-                    getClass().getResource(String.format(this.path, "none")).toExternalForm());
+    private void handlePreviewExited() {
+        if (!this.currentImage.equals("floor")) {
+            Image image = getImage("none");
             this.currentPreview.changeImage(image);
         }
     }
@@ -166,9 +214,7 @@ public class EditorController {
 
     @FXML
     private void setImage(MultipleImages view) {
-        Image image = new Image(
-                getClass().getResource(String.format(this.path,
-                        this.currentImage)).toExternalForm());
+        Image image = getImage(this.currentImage);
 
         view.changeImage(image);
         view.setImageIndex(this.rotation);

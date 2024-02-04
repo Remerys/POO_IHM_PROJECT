@@ -1,0 +1,50 @@
+.editor {
+    -fx-background-color: #282C34;
+}
+
+.editor > .viewport{
+    -fx-background-color: #282C34;
+}
+
+.editor .scroll-bar:vertical .track {
+    -fx-background-color: #323844;
+}
+
+/* Change the color of the vertical scrollbar thumb */
+.editor .scroll-bar:vertical .thumb {
+    -fx-background-color: #4c4f54;
+}
+
+/* Change the color of the horizontal scrollbar track */
+.editor .scroll-bar:horizontal .track {
+    -fx-background-color: #323844;
+}
+
+/* Change the color of the horizontal scrollbar thumb */
+.editor .scroll-bar:horizontal .thumb {
+    -fx-background-color: #4c4f54;
+}
+
+/* Change the color of the vertical scrollbar increment button (down arrow) */
+.editor .scroll-bar:vertical .increment-button {
+    -fx-background-color: #323844;
+}
+
+/* Change the color of the vertical scrollbar decrement button (up arrow) */
+.editor .scroll-bar:vertical .decrement-button {
+    -fx-background-color: #323844;
+}
+
+/* Change the color of the horizontal scrollbar increment button (right arrow) */
+.editor .scroll-bar:horizontal .increment-button {
+    -fx-background-color: #323844;
+}
+
+/* Change the color of the horizontal scrollbar decrement button (left arrow) */
+.editor .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #323844;
+}
+
+.icons {
+    -fx-padding: 10 0 0 10;
+}

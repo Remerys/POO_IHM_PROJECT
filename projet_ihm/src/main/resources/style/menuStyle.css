@@ -17,7 +17,7 @@
     -fx-font-family: 'Rakkas';
     -fx-font-size: 52px;
     -fx-text-fill: #e3a72f;
-    -fx-effect: dropshadow(gaussian, black, 35px, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 4, 1, 0px, 0px);
 }
 
 .menuButton {
@@ -26,11 +26,12 @@
     -fx-background-color: transparent; /* Set background color to transparent */
     -fx-border-color: transparent; /* Set border color to transparent */
     -fx-text-fill: gold;
-    -fx-effect: dropshadow(gaussian, black, 25px, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 2, 1, 0px, 0px);
 }
 
 .menuButton:hover {
     -fx-text-fill: orange; /* Change text color to orange on hover */
+    -fx-cursor: hand;
 }
 
 .menuButton:pressed {
@@ -43,12 +44,26 @@
     -fx-text-fill: rgb(255, 249, 217);
 }
 
-.scroll-pane {
-    -fx-background-color:rgba(0,0,0,0.5);
+.menuSubPane{
+    -fx-background-color: rgba(0,0,0,0.5);
 }
 
-.scroll-pane > .viewport {
+.menuSubPane > .viewport {
     -fx-background-color: transparent;
+}
+
+.character:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.521), 2, 1, 0px, 0px);
+    -fx-cursor: hand;
+}
+
+ComboBox {
+    -fx-font-family: 'Lugrasimo';
+    -fx-background-color: gold;
+}
+
+ComboBox:hover {
+    -fx-background-color: orange;
 }
 
 .text-area {
