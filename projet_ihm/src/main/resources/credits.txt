@@ -1,0 +1,37 @@
+GAUNTLET (en moins bien)
+
+Developed by Phoque Inc. Studios
+
+Lead Developers:
+  Romain Dugas
+  Julien Lesné
+  Baptiste Martin
+  Lilian Marchebout
+
+Art Team:
+  Xavier Skapin
+  Baptiste Martin
+  Lilian Marchebout
+  Julien Lesné
+  Romain Dugas (paint grandmaster)
+
+Sound Design:
+  Baptiste Martin
+
+Music Composition:
+  Nobody Really
+
+Voice Actors:
+  Same TrustMe
+
+Quality Insurance:
+  QA Manager: Xavier Skapin
+  Testers:
+    Baptiste Martin
+    Lilian Marchebout
+    Julien Lesné
+    Romain Dugas
+
+Special Thanks:
+  Xavier Skapin (obviously)
+  Gilles Subrenat (moral support)

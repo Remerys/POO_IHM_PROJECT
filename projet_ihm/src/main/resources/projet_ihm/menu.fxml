@@ -21,7 +21,7 @@
       <Button styleClass="menuButton" fx:id="multi" text="Multiplayer" onAction="#switchToMultiplayer" />
       <Button styleClass="menuButton" fx:id="configuration" text="Configuration" onAction="#switchToConfiguration" />
       <Button styleClass="menuButton" fx:id="score" text="Hall Of Fame" onAction="#switchToHallOfFame" />
-      <Button styleClass="menuButton" fx:id="credit" text="Credits" />
+      <Button styleClass="menuButton" fx:id="credit" text="Credits" onAction="#switchToCredits" />
       <Button styleClass="menuButton" fx:id="quit" text="Quit" />
    </children>
    <padding>

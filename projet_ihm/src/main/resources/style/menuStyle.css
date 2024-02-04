@@ -15,14 +15,14 @@
 
 .mainTitle {
     -fx-font-family: 'Rakkas';
-    -fx-font-size: 52px; 
+    -fx-font-size: 52px;
     -fx-text-fill: #e3a72f;
     -fx-effect: dropshadow(gaussian, black, 35px, 0, 0, 0);
 }
 
 .menuButton {
     -fx-font-family: 'Lugrasimo';
-    -fx-font-size: 24px; 
+    -fx-font-size: 24px;
     -fx-background-color: transparent; /* Set background color to transparent */
     -fx-border-color: transparent; /* Set border color to transparent */
     -fx-text-fill: gold;
@@ -39,14 +39,37 @@
 
 .menuText {
     -fx-font-family: 'Lugrasimo';
-    -fx-font-size: 24px; 
+    -fx-font-size: 24px;
     -fx-text-fill: rgb(255, 249, 217);
 }
 
-.scroll-pane{
+.scroll-pane {
     -fx-background-color:rgba(0,0,0,0.5);
 }
 
 .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Rakkas';
+    -fx-font-size: 52px;
+    -fx-text-fill: #e3a72f;
+    -fx-overflow:hidden;
+    -fx-effect: dropshadow(gaussian, black, 35px, 0, 0, 0);
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-hbar-policy: never; /* Masque la barre de défilement horizontale */
+    -fx-vbar-policy: never; /* Masque la barre de défilement verticale */
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
     -fx-background-color: transparent;
 }

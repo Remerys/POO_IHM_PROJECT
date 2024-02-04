@@ -38,6 +38,11 @@ public class MenuController {
     }
 
     @FXML
+    private void switchToCredits() throws IOException {
+        App.setRoot("credits");
+    }
+
+    @FXML
     public void initialize() {
         quit.setOnMouseClicked(event -> Platform.exit());
     }
