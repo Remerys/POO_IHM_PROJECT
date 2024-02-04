@@ -25,7 +25,7 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        root.addEventFilter(KeyEvent.KEY_PRESSED, event -> {   
+        root.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 this.showPausePopup();
             }
@@ -59,7 +59,7 @@ public class GameController {
             }
         }
     }
-    
+
     private void showPausePopup() {
         // Créer une fenêtre pop-up avec un titre
         Alert pauseAlert = new Alert(AlertType.CONFIRMATION);

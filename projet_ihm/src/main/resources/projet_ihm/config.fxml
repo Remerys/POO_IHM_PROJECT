@@ -48,7 +48,7 @@
                             <Label text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="menuText" />
                             <Label text="Player 3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="menuText" />
                             <Label text="Player 4" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="menuText" />
-            
+
                             <Label text="Up" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="menuText" />
                             <Label text="Down" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="menuText" />
                             <Label text="Left" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="menuText" />

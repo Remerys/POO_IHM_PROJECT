@@ -65,7 +65,7 @@
          </VBox>
 
          <Region HBox.hgrow="ALWAYS" ></Region>
-         
+
          <VBox fx:id="wizardPane" alignment="CENTER" styleClass="character">
             <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
             <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
@@ -80,7 +80,7 @@
          <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
       </HBox>
    </center>
-   
+
    <bottom>
       <HBox fx:id="bottomBar" alignment="CENTER">
          <Button styleClass="menuButton" text="Back" onAction="#switchToMenu" />

@@ -16,7 +16,7 @@ public class MultiplayerController {
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
     }
-    
+
     @FXML
     public void initialize() {
         Region spring = new Region();
