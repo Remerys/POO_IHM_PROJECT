@@ -27,7 +27,7 @@
         <VBox>
             <MenuBar>
                 <Menu mnemonicParsing="false" text="File">
-                    <MenuItem mnemonicParsing="false" text="Create new map"/>
+                    <MenuItem mnemonicParsing="false" text="Create new map" onAction="#newMap"/>
                     <MenuItem mnemonicParsing="false" text="Save map"/>
                     <MenuItem mnemonicParsing="false" text="Save map as..."/>
                     <MenuItem mnemonicParsing="false" text="Open map file"/>
@@ -61,7 +61,7 @@
                     </graphic>
                 </Button>
                 <Region HBox.hgrow="ALWAYS" />
-                <Label text="No item selected" fx:id="currentItem"/>
+                <Label text="No item selected" fx:id="itemSelected"/>
             </HBox>
         </VBox>
     </top>

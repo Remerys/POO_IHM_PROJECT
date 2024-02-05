@@ -30,8 +30,7 @@ public class MultipleImages extends ImageView {
     public void setImageIndex(int i) {
         if (0 > i)
             i *= -1;
-        if (i > this.nbImages)
-            i %= this.nbImages;
+        i %= this.nbImages;
         int indexX = i % this.nbImagesX;
         int indexY = (i / this.nbImagesX) % this.nbImagesY;
         this.setViewport(
