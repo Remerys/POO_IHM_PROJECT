@@ -28,8 +28,8 @@
             <MenuBar>
                 <Menu mnemonicParsing="false" text="File">
                     <MenuItem mnemonicParsing="false" text="Create new map" onAction="#newMap"/>
-                    <MenuItem mnemonicParsing="false" text="Save map"/>
-                    <MenuItem mnemonicParsing="false" text="Save map as..."/>
+                    <MenuItem mnemonicParsing="false" text="Save map" onAction="#save"/>
+                    <MenuItem mnemonicParsing="false" text="Save map as..." onAction="#newSave"/>
                     <MenuItem mnemonicParsing="false" text="Open map file"/>
                     <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Exit editor" onAction="#switchToMenu"/>
                 </Menu>

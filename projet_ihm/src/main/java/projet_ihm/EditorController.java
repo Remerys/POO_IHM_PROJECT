@@ -1,7 +1,11 @@
 package projet_ihm;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -43,7 +47,8 @@ public class EditorController {
 
     @FXML
     public void initialize() {
-
+//        UIModel elem = new UIModel("floor", 0, 0, 0);
+//        writeJsonToFile(elem);
     }
 
     @FXML
@@ -305,4 +310,105 @@ public class EditorController {
                 decreaseRotation();
         });
     }
+
+    /*
+    SAVE
+     */
+
+    class UIModel {
+        private String name;
+        private int posX;
+        private int posY;
+        private int level;
+        public UIModel(String name, int posX, int posY, int lvl) {
+            this.name = name;
+            this.posX = posX;
+            this.posY = posY;
+            this.level = lvl;
+        }
+
+        public  UIModel() {
+
+        }
+    }
+
+    @FXML
+    private void save() {
+
+    }
+
+    @FXML
+    private void newSave() {
+        System.out.println("SAVE AS");
+        this.convertGridPaneToJSON("output");
+    }
+    public String findMatchingString(String[] names, String url) {
+        for (String name : names) {
+            if (url.contains(name)) {
+                return name;
+            }
+        }
+        return null; // Ou lancez une exception ou renvoyez une valeur par défaut, selon votre logique
+    }
+
+    private UIModel convertToJSON(int index, int x, int y) {
+        UIModel data = new UIModel();
+        StackPane layer = (StackPane) gridpane.getChildren().get(index);
+        MultipleImages view = (MultipleImages) layer.getChildren().get(1);
+        String[] names = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
+
+        data.posX = x;
+        data.posY = y;
+        data.name = this.findMatchingString(names,view.getImage().getUrl());
+        if (data.name == null) {
+            data.name = "floor";
+        }
+        data.level = 0; //pour l'instant
+        return data;
+    }
+
+    private void convertGridPaneToJSON(String filename) {
+        this.cleanJson(filename);
+        int index = 0;
+        for (int i = 0; i < this.sizeX; i++) {
+            for (int j = 0; j < this.sizeY; j++) {
+                System.out.println(index);
+                UIModel data = this.convertToJSON(index, i, j);
+                this.writeJsonToFile(data, filename);
+                index++;
+            }
+        }
+    }
+
+    public void writeJsonToFile(UIModel elem, String filename) {
+        // Build JSON object manually
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("Name", elem.name);
+        data.put("Position X", elem.posX);
+        data.put("Position Y", elem.posY);
+        data.put("Level", elem.level);
+
+        // Convert the Map to a JSONObject
+        JSONObject jsonObject = new JSONObject(data);
+
+        // Convert the JSON object to a string
+        String jsonString = jsonObject.toString();
+
+        // Write the JSON string to a file
+        try (FileWriter fileWriter = new FileWriter(filename + ".json", true)) {
+            fileWriter.write(jsonString);
+            System.out.println("JSON written to file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cleanJson(String filename) {
+        try (FileWriter fileWriter = new FileWriter(filename + ".json", false)) {
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
