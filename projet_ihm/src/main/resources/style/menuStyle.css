@@ -40,8 +40,20 @@
 
 .menuText {
     -fx-font-family: 'Lugrasimo';
-    -fx-font-size: 24px;
+    -fx-font-size: 22px;
     -fx-text-fill: rgb(255, 249, 217);
+}
+
+.clickableMenuText {
+    -fx-font-family: 'Lugrasimo';
+    -fx-font-size: 20px;
+    -fx-text-fill: rgb(213, 208, 185);
+    -fx-alignment: center; /* Horizontal alignment */
+    -fx-text-alignment: center; /* Text alignment */
+}
+
+.clickableMenuText:hover {
+    -fx-text-fill: rgb(245, 239, 220);
 }
 
 .menuSubPane{
@@ -68,11 +80,6 @@ ComboBox:hover {
 
 .text-area {
     -fx-background-color: transparent;
-    -fx-font-family: 'Rakkas';
-    -fx-font-size: 52px;
-    -fx-text-fill: #e3a72f;
-    -fx-overflow:hidden;
-    -fx-effect: dropshadow(gaussian, black, 35px, 0, 0, 0);
 }
 
 .text-area .scroll-pane {
