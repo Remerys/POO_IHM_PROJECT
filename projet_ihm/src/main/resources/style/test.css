@@ -5,8 +5,13 @@
 
 .mainTitle {
     -fx-opacity: 0;
+    -fx-font-size: 64px;
 }
 
 .menuButton {
     -fx-opacity: 0;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-background-color: #272735;
+    -fx-border-color: white ;
+    -fx-border-radius: 5;
 }
