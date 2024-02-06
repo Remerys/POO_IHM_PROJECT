@@ -10,10 +10,12 @@ public class MultipleImages extends ImageView {
     private int nbImagesY;
     private double width;
     private double height;
+    public int numImage;
     private final int IMAGE_SIZE = 80;
 
     public MultipleImages(Image image) {
         super(image);
+        this.numImage = 0;
         this.calcul(image);
         this.setFitWidth(this.nbImagesX * this.IMAGE_SIZE);
         this.setFitHeight(this.nbImagesY * this.IMAGE_SIZE);
@@ -31,6 +33,7 @@ public class MultipleImages extends ImageView {
         if (0 > i)
             i *= -1;
         i %= this.nbImages;
+        this.numImage = i;
         int indexX = i % this.nbImagesX;
         int indexY = (i / this.nbImagesX) % this.nbImagesY;
         this.setViewport(

@@ -1,11 +1,11 @@
 package projet_ihm;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
+import java.io.*;
 
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.net.URL;
+import java.util.Arrays;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -38,7 +38,11 @@ public class EditorController {
     private int sizeX;
     private int sizeY;
 
+    private final String[] names = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
+
     private final String[] potions = {"defense", "life", "magic", "physical", "poison", "speed"};
+    private final String[] monsters = {"ghost", "daemon", "grunt", "lobber", "death"};
+    private final String[] spawners = { "spawner_ghost", "spawner_grunt"};
 
     @FXML
     private void switchToMenu() throws IOException {
@@ -47,58 +51,65 @@ public class EditorController {
 
     @FXML
     public void initialize() {
-//        UIModel elem = new UIModel("floor", 0, 0, 0);
-//        writeJsonToFile(elem);
+
     }
 
     @FXML
     private void createGridPane() {
-        Image floor = getImage("floor");
-        Image none = getImage("none");
+        gridpane.getChildren().clear();
         for (int i = 0; i < this.sizeX; i++) {
             for (int j = 0; j < this.sizeY; j++) {
-                ImageView background = new ImageView(floor);
-                background.setPreserveRatio(true);
-                MultipleImages view = new MultipleImages(none);
-                view.setPreserveRatio(true);
-                MultipleImages preview = new MultipleImages(none);
-                preview.setPreserveRatio(true);
-
-                // ATTENTION les zones transparentes ne sont pas clickable
-                // => Plusieurs couches clickables
-
-                // preview
-                // sort
-                background.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
-                view.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
-                preview.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
-
-                // entre
-                background.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
-                view.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
-                preview.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
-
-                // tourne
-                background.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
-                view.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
-                preview.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
-
-                // view
-                background.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
-                view.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
-                preview.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
-
-                StackPane layer = new StackPane();
-                layer.getChildren().addAll(background, view, preview);
-
+                StackPane layer = createBox();
                 gridpane.add(layer, i, j);
             }
         }
     }
 
     @FXML
+    private StackPane createBox() {
+        Image floor = getImage("floor");
+        Image none = getImage("none");
+
+        ImageView background = new ImageView(floor);
+        background.setPreserveRatio(true);
+
+        MultipleImages view = new MultipleImages(none);
+        view.setPreserveRatio(true);
+
+        MultipleImages preview = new MultipleImages(none);
+        preview.setPreserveRatio(true);
+
+        // ATTENTION les zones transparentes ne sont pas clickable
+        // => Plusieurs couches clickables
+
+        // preview
+        // sort
+        background.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
+        view.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
+        preview.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, event -> handlePreviewExited());
+
+        // entre
+        background.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+        view.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+        preview.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, event -> handlePreviewEntered(preview));
+
+        // tourne
+        background.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+        view.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+        preview.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
+
+        // view
+        background.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
+        view.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
+        preview.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
+
+        StackPane layer = new StackPane();
+        layer.getChildren().addAll(background, view, preview);
+        return layer;
+    }
+
+    @FXML
     private void createIcons() {
-        String[] names = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
         for (String name : names) {
             Image image = getImage(name);
             MultipleImages view = new MultipleImages(image);
@@ -132,7 +143,8 @@ public class EditorController {
                 this.sizeX = Integer.parseInt(sizeXField.getText());
                 this.sizeY = Integer.parseInt(sizeYField.getText());
                 if (this.sizeX > 0 && this.sizeY > 0) {
-                    this.launchGrid();
+                    this.createGridPane();
+                    this.launchApp();
                     stage.close();
                 } else {
                     label.setText("Les nombres doivent être positifs");
@@ -160,8 +172,8 @@ public class EditorController {
         stage.show();
     }
 
-    private void launchGrid() {
-        this.createGridPane();
+    private void launchApp() {
+
         this.createIcons();
         this.handleZoom();
         this.handleRotate();
@@ -272,6 +284,28 @@ public class EditorController {
         return getUrl(view).contains("floor");
     }
 
+    private boolean isMonsters(MultipleImages view) {
+        for (String monster : monsters) {
+            if (getUrl(view).contains(monster)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isSpawner(MultipleImages view) {
+        for (String spawner : spawners) {
+            if (getUrl(view).contains(spawner)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isPotion(MultipleImages view) {
+        return getUrl(view).contains("potion");
+    }
+
     /*
     HANDLE
      */
@@ -315,23 +349,6 @@ public class EditorController {
     SAVE
      */
 
-    class UIModel {
-        private String name;
-        private int posX;
-        private int posY;
-        private int level;
-        public UIModel(String name, int posX, int posY, int lvl) {
-            this.name = name;
-            this.posX = posX;
-            this.posY = posY;
-            this.level = lvl;
-        }
-
-        public  UIModel() {
-
-        }
-    }
-
     @FXML
     private void save() {
 
@@ -342,65 +359,113 @@ public class EditorController {
         System.out.println("SAVE AS");
         this.convertGridPaneToJSON("output");
     }
-    public String findMatchingString(String[] names, String url) {
+
+
+    @FXML
+    private void load() {
+        String filename = "output";
+        readJsonFile(filename);
+    }
+
+    public void readJsonFile(String filename) {
+        try {
+            FileReader fileReader = new FileReader(filename + ".json");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder jsonContent = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonContent.append(line);
+            }
+
+            fileReader.close();
+
+            JSONArray jsonArray = new JSONArray(jsonContent.toString());
+            createGridPaneJSON(jsonArray);
+            this.launchApp();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading from the file: " + e.getMessage());
+        }
+    }
+
+    private void createGridPaneJSON(JSONArray jsonArray) {
+        gridpane.getChildren().clear();
+        for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                int x = (int) jsonObject.get("Position X");
+                int y = (int) jsonObject.get("Position Y");
+                String name = (String) jsonObject.get("Name");
+//                int level = (int) jsonObject.get("Level");
+                int numImage = (int) jsonObject.get("Orientation");
+
+
+                StackPane layer = createBox();
+                MultipleImages view = (MultipleImages) layer.getChildren().get(1);
+                Image image = getImage(name);
+                view.changeImage(image);
+                view.setImageIndex(numImage);
+                gridpane.add(layer, x, y);
+      }
+    }
+
+    public String findMatchingName(String[] names, String url) {
         for (String name : names) {
             if (url.contains(name)) {
                 return name;
             }
         }
-        return null; // Ou lancez une exception ou renvoyez une valeur par défaut, selon votre logique
+        return null;
     }
 
-    private UIModel convertToJSON(int index, int x, int y) {
-        UIModel data = new UIModel();
+    private JSONObject convertToJSON(int index, int x, int y) {
+        JSONObject data = new JSONObject();
         StackPane layer = (StackPane) gridpane.getChildren().get(index);
         MultipleImages view = (MultipleImages) layer.getChildren().get(1);
-        String[] names = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
-
-        data.posX = x;
-        data.posY = y;
-        data.name = this.findMatchingString(names,view.getImage().getUrl());
-        if (data.name == null) {
-            data.name = "floor";
+        int posX = x;
+        int posY = y;
+        String name = this.findMatchingName(names,view.getImage().getUrl());
+        if (name == null) {
+            name = "floor";
         }
-        data.level = 0; //pour l'instant
+        int orientation = view.numImage;
+        int level = 0;
+
+        if (isMonsters(view) || isSpawner(view)) { //had level
+            level = view.numImage;
+        }
+        data.put("Name", name);
+        data.put("Position X", posX);
+        data.put("Position Y", posY);
+        data.put("Level", level);
+        data.put("Orientation", orientation);
+
         return data;
     }
 
     private void convertGridPaneToJSON(String filename) {
         this.cleanJson(filename);
         int index = 0;
+        int endIndex = (this.sizeX*this.sizeY)-1;
+
+        JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < this.sizeX; i++) {
             for (int j = 0; j < this.sizeY; j++) {
-                System.out.println(index);
-                UIModel data = this.convertToJSON(index, i, j);
-                this.writeJsonToFile(data, filename);
+//                System.out.println(index);
+                JSONObject jsonObject = this.convertToJSON(index, i, j);
+                jsonArray.put(jsonObject);
                 index++;
             }
         }
-    }
+        try {
+            FileWriter fileWriter = new FileWriter(filename + ".json", true);
 
-    public void writeJsonToFile(UIModel elem, String filename) {
-        // Build JSON object manually
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("Name", elem.name);
-        data.put("Position X", elem.posX);
-        data.put("Position Y", elem.posY);
-        data.put("Level", elem.level);
-
-        // Convert the Map to a JSONObject
-        JSONObject jsonObject = new JSONObject(data);
-
-        // Convert the JSON object to a string
-        String jsonString = jsonObject.toString();
-
-        // Write the JSON string to a file
-        try (FileWriter fileWriter = new FileWriter(filename + ".json", true)) {
-            fileWriter.write(jsonString);
-            System.out.println("JSON written to file successfully.");
+            fileWriter.write(jsonArray.toString());
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void cleanJson(String filename) {

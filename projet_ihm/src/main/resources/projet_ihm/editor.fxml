@@ -30,7 +30,7 @@
                     <MenuItem mnemonicParsing="false" text="Create new map" onAction="#newMap"/>
                     <MenuItem mnemonicParsing="false" text="Save map" onAction="#save"/>
                     <MenuItem mnemonicParsing="false" text="Save map as..." onAction="#newSave"/>
-                    <MenuItem mnemonicParsing="false" text="Open map file"/>
+                    <MenuItem mnemonicParsing="false" text="Open map file" onAction="#load"/>
                     <MenuItem fx:id="editorButton" mnemonicParsing="false" text="Exit editor" onAction="#switchToMenu"/>
                 </Menu>
                 <Menu text="View">
