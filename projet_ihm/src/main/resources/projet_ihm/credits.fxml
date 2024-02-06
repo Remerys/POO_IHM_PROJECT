@@ -28,13 +28,11 @@
    </top>
 
    <center>
-      <VBox>
-         <HBox alignment="CENTER">
+         <HBox>
             <Region HBox.hgrow="ALWAYS"/>
-                  <TextArea fx:id="textArea" styleClass="text-area" wrapText="true" editable="false"/>
+            <TextArea fx:id="textArea" styleClass="text-area, menuText" wrapText="true" editable="false"/>
             <Region HBox.hgrow="ALWAYS"/>
          </HBox>
-      </VBox>
    </center>
 
    <bottom>
