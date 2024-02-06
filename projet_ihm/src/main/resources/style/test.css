@@ -1,0 +1,12 @@
+.menuContainer {
+    -fx-background-image: url(../images/background.png);
+    -fx-background-size: 100% 100%;
+}
+
+.mainTitle {
+    -fx-opacity: 0;
+}
+
+.menuButton {
+    -fx-opacity: 0;
+}
