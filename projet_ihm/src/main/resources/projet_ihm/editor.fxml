@@ -39,7 +39,7 @@
                 </Menu>
             </MenuBar>
             <HBox alignment="CENTER">
-                <Button>
+                <Button onAction="#save">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
                             <Image url="@../images/save_icon.png"/>

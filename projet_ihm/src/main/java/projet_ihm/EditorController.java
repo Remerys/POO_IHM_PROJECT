@@ -2,6 +2,8 @@ package projet_ihm;
 
 import java.io.*;
 
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.net.URL;
@@ -37,6 +39,8 @@ public class EditorController {
     private MultipleImages currentPreview;
     private int sizeX;
     private int sizeY;
+
+    private String filepath;
 
     private final String[] names = { "exit", "floor", "wall", "door", "food", "key", "potion_life", "treasure", "smart_bomb", "ghost", "daemon", "grunt", "lobber", "death", "spawner_ghost", "spawner_grunt" };
 
@@ -167,7 +171,7 @@ public class EditorController {
         pane.add(cancel, 1, 3);
 
         Scene scene = new Scene(pane, 200, 200);
-        stage.setTitle("Editor");
+        stage.setTitle("New Map");
         stage.setScene(scene);
         stage.show();
     }
@@ -181,7 +185,7 @@ public class EditorController {
 
     private void changeCurrentImage(String name) {
         this.currentImage = name;
-        itemSelected.setText(name);
+        this.itemSelected.setText(name);
     }
 
 
@@ -351,25 +355,38 @@ public class EditorController {
 
     @FXML
     private void save() {
+        System.out.println(this.filepath);
+        if (this.filepath != null) {
+            System.out.println("SAVE");
+            this.convertGridPaneToJSON(this.filepath);
+        } else {
+            this.newSave();
+        }
 
     }
 
     @FXML
     private void newSave() {
-        System.out.println("SAVE AS");
-        this.convertGridPaneToJSON("output");
+        System.out.println("NEW SAVE");
+        this.filepath = fileChoose();
+        if (this.filepath != null) {
+            this.convertGridPaneToJSON(this.filepath);
+        }
+//        System.out.println(this.filepath);
     }
 
 
     @FXML
     private void load() {
-        String filename = "output";
-        readJsonFile(filename);
+        this.filepath = fileChoose();
+        if (this.filepath != null) {
+            readJsonFile(this.filepath);
+        }
     }
 
-    public void readJsonFile(String filename) {
+    public void readJsonFile(String filepath) {
         try {
-            FileReader fileReader = new FileReader(filename + ".json");
+            FileReader fileReader = new FileReader(filepath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             StringBuilder jsonContent = new StringBuilder();
@@ -443,8 +460,8 @@ public class EditorController {
         return data;
     }
 
-    private void convertGridPaneToJSON(String filename) {
-        this.cleanJson(filename);
+    private void convertGridPaneToJSON(String filepath) {
+        this.cleanJson(filepath);
         int index = 0;
         int endIndex = (this.sizeX*this.sizeY)-1;
 
@@ -458,7 +475,7 @@ public class EditorController {
             }
         }
         try {
-            FileWriter fileWriter = new FileWriter(filename + ".json", true);
+            FileWriter fileWriter = new FileWriter(filepath, true);
 
             fileWriter.write(jsonArray.toString());
             fileWriter.close();
@@ -468,12 +485,28 @@ public class EditorController {
 
     }
 
-    public void cleanJson(String filename) {
-        try (FileWriter fileWriter = new FileWriter(filename + ".json", false)) {
+    public void cleanJson(String filepath) {
+        try (FileWriter fileWriter = new FileWriter(filepath, false)) {
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
+    private String fileChoose() {
+        Stage stage = new Stage();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open file");
+
+        fileChooser.setInitialDirectory(new File("projet_ihm/src/main/resources/saves"));
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+//            System.out.println("File selected: " + selectedFile.getAbsolutePath());
+            return selectedFile.getAbsolutePath();
+        }
+        return null; //peut avoir des sources d'erreurs
+    }
 }
