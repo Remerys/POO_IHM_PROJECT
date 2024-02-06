@@ -2,12 +2,10 @@ package projet_ihm;
 
 import java.io.*;
 
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.net.URL;
-import java.util.Arrays;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -39,7 +37,6 @@ public class EditorController {
     private MultipleImages currentPreview;
     private int sizeX;
     private int sizeY;
-    private boolean isInstanciate = false;
 
     private String filepath;
 
@@ -104,6 +101,7 @@ public class EditorController {
         preview.addEventFilter(ScrollEvent.SCROLL, event -> handlePreviewEntered(preview));
 
         // view
+        //click
         background.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
         view.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
         preview.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> placeImage(view));
@@ -131,6 +129,8 @@ public class EditorController {
 
     @FXML
     private void newMap() {
+
+
         Stage stage = new Stage();
         GridPane pane = new GridPane();
         Label label = new Label("");
@@ -148,6 +148,7 @@ public class EditorController {
                 this.sizeX = Integer.parseInt(sizeXField.getText());
                 this.sizeY = Integer.parseInt(sizeYField.getText());
                 if (this.sizeX > 0 && this.sizeY > 0) {
+                    this.filepath = null;
                     this.createGridPane();
                     this.launchApp();
                     stage.close();
@@ -178,7 +179,6 @@ public class EditorController {
     }
 
     private void launchApp() {
-        this.isInstanciate = true;
         this.createIcons();
         this.handleZoom();
         this.handleRotate();
@@ -356,22 +356,18 @@ public class EditorController {
 
     @FXML
     private void save() {
-        if (this.isInstanciate) {
-            if (this.filepath != null) {
-                this.convertGridPaneToJSON(this.filepath);
-            } else {
-                this.newSave();
-            }
+        if (this.filepath != null) {
+            this.convertGridPaneToJSON(this.filepath);
+        } else {
+            this.newSave();
         }
     }
 
     @FXML
     private void newSave() {
-        if (this.isInstanciate) {
-            this.filepath = fileChoose();
-            if (this.filepath != null) {
-                this.convertGridPaneToJSON(this.filepath);
-            }
+        this.filepath = fileCreate();
+        if (this.filepath != null) {
+            this.convertGridPaneToJSON(this.filepath);
         }
     }
 
@@ -503,8 +499,24 @@ public class EditorController {
 
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
-//            System.out.println("File selected: " + selectedFile.getAbsolutePath());
             return selectedFile.getAbsolutePath();
+        }
+        return null; //peut avoir des sources d'erreurs
+    }
+
+    private String fileCreate() {
+        Stage stage = new Stage();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("projet_ihm/src/main/resources/saves"));
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            return file.getAbsolutePath();
         }
         return null; //peut avoir des sources d'erreurs
     }
