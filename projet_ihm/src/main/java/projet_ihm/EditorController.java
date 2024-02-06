@@ -39,6 +39,7 @@ public class EditorController {
     private MultipleImages currentPreview;
     private int sizeX;
     private int sizeY;
+    private boolean isInstanciate = false;
 
     private String filepath;
 
@@ -177,7 +178,7 @@ public class EditorController {
     }
 
     private void launchApp() {
-
+        this.isInstanciate = true;
         this.createIcons();
         this.handleZoom();
         this.handleRotate();
@@ -355,24 +356,23 @@ public class EditorController {
 
     @FXML
     private void save() {
-        System.out.println(this.filepath);
-        if (this.filepath != null) {
-            System.out.println("SAVE");
-            this.convertGridPaneToJSON(this.filepath);
-        } else {
-            this.newSave();
+        if (this.isInstanciate) {
+            if (this.filepath != null) {
+                this.convertGridPaneToJSON(this.filepath);
+            } else {
+                this.newSave();
+            }
         }
-
     }
 
     @FXML
     private void newSave() {
-        System.out.println("NEW SAVE");
-        this.filepath = fileChoose();
-        if (this.filepath != null) {
-            this.convertGridPaneToJSON(this.filepath);
+        if (this.isInstanciate) {
+            this.filepath = fileChoose();
+            if (this.filepath != null) {
+                this.convertGridPaneToJSON(this.filepath);
+            }
         }
-//        System.out.println(this.filepath);
     }
 
 
@@ -468,7 +468,6 @@ public class EditorController {
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < this.sizeX; i++) {
             for (int j = 0; j < this.sizeY; j++) {
-//                System.out.println(index);
                 JSONObject jsonObject = this.convertToJSON(index, i, j);
                 jsonArray.put(jsonObject);
                 index++;

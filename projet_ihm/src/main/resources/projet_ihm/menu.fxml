@@ -12,7 +12,7 @@
       fx:controller="projet_ihm.MenuController"
       spacing="10"
       styleClass="menuContainer"
-      stylesheets="@../style/test.css"
+      stylesheets="@../style/menuStyle.css"
 >
    <children>
       <Label  styleClass="mainTitle" text="Gauntlet" />
