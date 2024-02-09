@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.css.PseudoClass;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollBar;
@@ -29,6 +30,10 @@ public class CreditsController {
     @FXML
 	public void initialize() {
         Platform.runLater(() -> {
+            // Centrer le texte du TextArea
+            PseudoClass centered = PseudoClass.getPseudoClass("centered");
+            textArea.pseudoClassStateChanged(centered, true);
+
             this.loadTextFromFile(this.creditsTxtPath);
 
             this.smoothScrollToBottom();
