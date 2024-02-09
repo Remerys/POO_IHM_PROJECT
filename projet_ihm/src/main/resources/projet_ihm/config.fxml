@@ -14,6 +14,7 @@
 
 
 <?import java.lang.String?>
+
 <BorderPane
       xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -49,6 +50,9 @@
                             <Label text="Attack" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="menuText" />
                             <Label text="Resurect" GridPane.columnIndex="0" GridPane.rowIndex="6" styleClass="menuText" />
                             <Label text="Use Bomb" GridPane.columnIndex="0" GridPane.rowIndex="7" styleClass="menuText" />
+
+                            <!-- The GridPane will be filled by the controller -->
+
                         </GridPane>
                     </content>
                 </ScrollPane>
@@ -87,9 +91,9 @@
     </center>
    <bottom>
       <HBox>
-        <Button styleClass="menuButton" fx:id="back" text="Back" onAction="#switchToMenu" />
+        <Button styleClass="menuButton" text="Back" onAction="#switchToMenu" />
         <Region HBox.hgrow="ALWAYS" />
-        <Button styleClass="menuButton" fx:id="apply" text="Apply Changes" />
+        <Button styleClass="menuButton" text="Apply Changes" onAction="#saveLocalJSONToFile"/>
       </HBox>
    </bottom>
 </BorderPane>
