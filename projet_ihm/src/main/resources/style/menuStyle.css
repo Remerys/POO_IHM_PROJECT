@@ -64,9 +64,14 @@
     -fx-background-color: transparent;
 }
 
+/* Single Player */
 .character:hover {
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.521), 2, 1, 0px, 0px);
     -fx-cursor: hand;
+}
+
+.characterButton {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
 }
 
 ComboBox {
