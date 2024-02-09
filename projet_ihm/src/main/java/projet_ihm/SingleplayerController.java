@@ -3,12 +3,17 @@ package projet_ihm;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+
 public class SingleplayerController {
 
     @FXML
     VBox warriorPane, valkyriePane, elfPane, wizardPane;
+
+    @FXML
+    Label info;
 
     private String selected = "warrior";
     private VBox selectedVBox = warriorPane;
@@ -38,18 +43,26 @@ public class SingleplayerController {
     }
 
     private void selectCharacter(VBox Pane) {
-        String border = "";
-        selectedVBox.setStyle(border);
+        selectedVBox.setStyle("");
         Pane.setStyle(borderSelected);
         selectedVBox = Pane;
         if (Pane == warriorPane) {
             selected = "warrior";
+            String warriorInfo = "Defense ++++ | Damage +++ | Speed ++ | Range Attack +";
+            info.setText(warriorInfo);
         } else if (Pane == valkyriePane) {
             selected = "valkyrie";
+            String valkyrieInfo = "Defense +++ | Damage ++ | Speed +++ | Range Attack ++";
+            info.setText(valkyrieInfo);
         } else if (Pane == elfPane) {
             selected = "elf";
+            String elfInfo = "Defense + | Damage ++ | Speed +++ | Range Attack ++++";
+            info.setText(elfInfo);
         } else if (Pane == wizardPane) {
             selected = "wizard";
+            String wizardInfo = "Defense + | Damage ++++ | Speed ++ | Range Attack +++";
+            info.setText(wizardInfo);
+
         }
     }
 

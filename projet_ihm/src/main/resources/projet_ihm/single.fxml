@@ -25,60 +25,87 @@
    </top>
 
    <center>
-      <HBox fx:id="characters" alignment="CENTER">
-         <Region HBox.hgrow="ALWAYS" ></Region>
-         <VBox fx:id="warriorPane" alignment="CENTER" styleClass="character">
-            <Label text="Warrior" styleClass="mainTitle" style="-fx-text-fill: red;" />
-            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
-               <graphic>
-                  <ImageView>
-                        <Image url="@../images/treasure.png" />
-                  </ImageView>
-               </graphic>
-            </Button>
-         </VBox>
+      <VBox alignment="CENTER">
+      <Region VBox.vgrow="ALWAYS" ></Region>
+         <HBox fx:id="characters" alignment="CENTER">
+            <Region HBox.hgrow="ALWAYS" ></Region>
 
-         <Region HBox.hgrow="ALWAYS" ></Region>
+   <!-- Warrior -->
+            <VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+                  <VBox fx:id="warriorPane" alignment="CENTER" styleClass="character">
+                     <Label text="Warrior" styleClass="mainTitle" style="-fx-text-fill: red;" />
+                     <Button styleClass="characterButton" prefWidth="200" prefHeight="400">
+                        <graphic>
+                           <ImageView>
+                                 <Image url="@../images/treasure.png" />
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                  </VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+            </VBox>
 
-         <VBox fx:id="valkyriePane" alignment="CENTER" styleClass="character">
-            <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
-            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
-               <graphic>
-                  <ImageView>
-                        <Image url="@../images/treasure.png" />
-                  </ImageView>
-               </graphic>
-            </Button>
-         </VBox>
+            <Region HBox.hgrow="ALWAYS" ></Region>
 
-         <Region HBox.hgrow="ALWAYS" ></Region>
+   <!-- Valkyrie -->
+            <VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+                  <VBox fx:id="valkyriePane" alignment="CENTER" styleClass="character">
+                     <Label text="Valkyrie" styleClass="mainTitle" style="-fx-text-fill: blue;" />
+                     <Button styleClass="characterButton" prefWidth="200" prefHeight="400">
+                        <graphic>
+                           <ImageView>
+                                 <Image url="@../images/treasure.png" />
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                  </VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+            </VBox>
 
-         <VBox fx:id="elfPane" alignment="CENTER" styleClass="character">
-            <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
-            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
-               <graphic>
-                  <ImageView>
-                        <Image url="@../images/treasure.png" />
-                  </ImageView>
-               </graphic>
-            </Button>
-         </VBox>
+            <Region HBox.hgrow="ALWAYS" ></Region>
 
-         <Region HBox.hgrow="ALWAYS" ></Region>
+   <!-- Elf -->
+            <VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+                  <VBox fx:id="elfPane" alignment="CENTER" styleClass="character">
+                     <Label text="Elf" styleClass="mainTitle" style="-fx-text-fill: green;" />
+                     <Button styleClass="characterButton" prefWidth="200" prefHeight="400">
+                        <graphic>
+                           <ImageView>
+                                 <Image url="@../images/treasure.png" />
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                  </VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+            </VBox>
 
-         <VBox fx:id="wizardPane" alignment="CENTER" styleClass="character">
-            <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
-            <Button style="-fx-background-color: rgba(0, 0, 0, 0.5);" prefWidth="200" prefHeight="400">
-               <graphic>
-                  <ImageView>
-                        <Image url="@../images/treasure.png" />
-                  </ImageView>
-               </graphic>
-            </Button>
-         </VBox>
+            <Region HBox.hgrow="ALWAYS" ></Region>
 
-         <Region styleClass="menuButton" HBox.hgrow="ALWAYS" ></Region>
-      </HBox>
+   <!-- Wizard -->
+            <VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+                  <VBox fx:id="wizardPane" alignment="CENTER" styleClass="character">
+                     <Label text="Wizard" styleClass="mainTitle" style="-fx-text-fill: yellow;" />
+                     <Button styleClass="characterButton" prefWidth="200" prefHeight="400">
+                        <graphic>
+                           <ImageView>
+                                 <Image url="@../images/treasure.png" />
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                  </VBox>
+               <Region VBox.vgrow="ALWAYS" ></Region>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS" ></Region>
+         </HBox>
+         <Region VBox.vgrow="ALWAYS" ></Region>
+         <Label fx:id="info" text="Error Affichage" styleClass="menuButton" />
+         <Region VBox.vgrow="ALWAYS" ></Region>
+      </VBox>
    </center>
 
    <bottom>
